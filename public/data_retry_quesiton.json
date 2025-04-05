@@ -1,0 +1,229 @@
+{
+  "shuffle":false,
+  "masteryscore":80,
+  "--limit":5,
+  "review": {
+    "showAnwswer":true,
+    "showCorrect":true,
+    "showReview":true
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "shuffle":false,
+      "attempt":3,
+      "type":"single",
+      "text": "Which of the following definitions best describes React.js?",
+      "answers": [
+        {
+          "text": "1 A library to build user interfaces with help of declarative code.",
+          "review":"",
+          "correct": true
+        },
+        {
+          "text": "2 A library for managing state in web applications.",
+          "correct": false
+        },
+        {
+          "text": "3 A framework to build user interfaces with help of imperative code.",
+          "correct": false
+        },
+        {
+          "text": "4 A library used for building mobile applications only.",
+          "correct": false
+        }
+      ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
+      "review":{
+        "reviewText":"We recommend that you review topic 1"
+      }
+    },
+    {
+      "id": "q2",
+      "text": "What purpose do React hooks serve?",
+      "shuffle":true,
+      "attempt":1,
+      "type":"single",
+      "answers": [
+        {
+          "text": "1 Enabling the use of state and other React features in functional components.",
+          "correct": true
+        },
+        {
+          "text": "2 Creating responsive layouts in React applications.",
+          "correct": false
+        },
+        { "text": "3 Handling errors within the application.", "correct": false },
+        {
+          "text": "4 Part of the Redux library for managing global state.",
+          "correct": false
+        }
+      ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
+      "review":{
+        "reviewText":"We recommend that you review topic 2"
+      }
+    },
+    {
+      "id": "q3",
+      "shuffle":false,
+      "attempt":1,
+      "type":"single",
+      "text": "Can you identify what JSX is?",
+      "answers": [
+        {
+          "text": "1 A JavaScript extension that adds HTML-like syntax to JavaScript.",
+          "correct": true
+        },
+        {
+          "text": "2 A JavaScript library for building dynamic user interfaces.",
+          "correct": false
+        },
+        {
+          "text": "3 A specific HTML version that was explicitly created for React.",
+          "correct": false
+        },
+        {
+          "text": "4 A tool for making HTTP requests in a React application.",
+          "correct": false
+        }
+      ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
+      "review":{
+        "reviewText":"We recommend that you review topic 3"
+      }
+    },
+    {
+      "id": "q4",
+      "shuffle":false,
+      "attempt":1,
+      "type":"single",
+      "text": "What is the most common way to create a component in React?",
+      "answers": [
+        {
+          "text": "1 By defining a JavaScript function that returns a renderable value.",
+          "correct": true
+        },
+        {
+          "text": "2 By defining a custom HTML tag in JavaScript.",
+          "correct": false
+        },
+        {
+          "text": "3 By creating a file with a .jsx extension.",
+          "correct": false
+        },
+        {
+          "text": "4 By using the \"new\" keyword followed by the component name.",
+          "correct": false
+        }
+      ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
+      "review":{
+        "reviewText":"We recommend that you review topic 4"
+      }
+    },
+    {
+      "id": "q5",
+      "shuffle":false,
+      "attempt":1,
+      "type":"single",
+      "text": "What does the term \"React state\" imply?",
+      "answers": [
+        {
+          "text": "1 An object in a component that holds values and may cause the component to render on change.",
+          "correct": true
+        },
+        {
+          "text": "2 The lifecycle phase a React component is in.",
+          "correct": false
+        },
+        {
+          "text": "3 The overall status of a React application, including all props and components.",
+          "correct": false
+        },
+        {
+          "text": "4 A library for managing global state in React applications.",
+          "correct": false
+        }
+      ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
+      "review":{
+        "reviewText":"We recommend that you review topic 5"
+      }
+    },
+    {
+      "id": "q6",
+      "shuffle":false,
+      "attempt":1,
+      "type":"single",
+      "text": "How do you typically render list content in React apps?",
+      "answers": [
+        {
+          "text": "1 By using the map() method to iterate over an array of data and returning JSX.",
+          "correct": true
+        },
+        {
+          "text": "2 By using the for() loop to iterate over an array of data and returning JSX.",
+          "correct": false
+        },
+        {
+          "text": "3 By using the forEach() method to iterate over an array of data and returning JSX.",
+          "correct": false
+        },
+        {
+          "text": "4 By using the loop() method to iterate over an array of data and returning JSX.",
+          "correct": false
+        }
+      ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
+      "review":{
+        "reviewText":"We recommend that you review topic 6"
+      }
+    },
+    {
+      "id": "q7",
+      "shuffle":false,
+      "attempt":1,
+      "type":"single",
+      "text": "Which approach can NOT be used to render content conditionally?",
+      "answers": [
+        { "text": "1 Using a the #if template syntax.", "correct": true },
+        { "text": "2 Using a ternary operator.", "correct": false },
+        { "text": "3 Using the && operator.", "correct": false },
+        { "text": "4 Using an if-else statement.", "correct": false }
+      ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
+      "review":{
+        "reviewText":"We recommend that you review topic 7"
+      }
+    }
+  ]
+}
