@@ -6,7 +6,7 @@ export function calculatePercentage(answers, questions) {
   // verifico anche se il numero di risposte dall'utente per una domanda equivale al numero di corrette
   // altrimenti se ad esempio fossero la risposta A e B le corrette e l'utente rispondesse solo B verrebbe considerata corretta
   const correctArrays = answers.filter((answer,index) => 
-  questions[index].answers.filter(answerJson => answerJson.correct === true).length===answer.length && //verifico se il numero di rispote dall'tuente equivale al numero di risposte corrette (risposta multipla)
+  answer && questions[index].answers.filter(answerJson => answerJson.correct === true).length===answer.length && //verifico se il numero di rispote dall'tuente equivale al numero di risposte corrette (risposta multipla)
   answer.every(item => item.correct === true)).length;
 
   // Conta gli array con almeno una risposta sbagliata

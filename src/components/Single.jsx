@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import Button from './Button.jsx';
+import React from 'react';
 
-export default function Single({
-  answers, onSelectAnswer, type, solution
-}){
+const Single = React.memo( ({answers, onSelectAnswer, type, solution}) =>
+{
   
+  console.log("entrooo",answers,type,solution)
   const [activeIndex, setActiveIndex] = useState(null);
   const handleClick=function handleClick(answer,type,index){
     onSelectAnswer(answer,type)
@@ -29,4 +30,6 @@ export default function Single({
       })}
     </ul>
   )
-}
+})
+
+export default Single;

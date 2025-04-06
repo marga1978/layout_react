@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import QuestionTimer from './QuestionTimer.jsx';
+import QuestionTimer from './QuestionTimerOLD.jsx';
 import Answers from './Answers.jsx';
 import QUESTIONS from '../questions.js';
 

@@ -29,13 +29,15 @@ export default function Quiz({data}) {
 
   const activeQuestionIndex = userAnswers.length;
   let quizIsComplete = false;
-  console.log("quiz",quiz)
+  // console.log("quiz",quiz)
+  // console.log("activeQuestionIndex",activeQuestionIndex)
   if (quiz) {
     quizIsComplete = activeQuestionIndex === quiz.length;
   }
   const handleSelectAnswer = useCallback(function handleSelectAnswer(
     selectedAnswer
   ) {
+    //console.log("handleSelectAnswer")
     setUserAnswers((prevUserAnswers) => {
       return [...prevUserAnswers, selectedAnswer];
     });

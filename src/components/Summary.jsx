@@ -27,7 +27,7 @@ export default function Summary({
   }
 
   function getAnswers(answersUser){
-    return answersUser.map(answer => answer.text).join("<br>");
+    return answersUser &&  answersUser.map(answer => answer.text).join("<br>");
   }
 
   function getNumberAnswerCorrect(index){

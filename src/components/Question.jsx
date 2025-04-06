@@ -1,8 +1,9 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Single from "./Single.jsx";
 import Multiple from "./Multiple.jsx";
 import Button from "./Button.jsx";
 import Feedback from "./Feedback.jsx";
+import QuestionTimer from "./QuestionTimer";
 import { shuffleArray } from "../utils/shuffle";
 import { checkCorrects } from "../utils/checkCorrects";
 
@@ -20,6 +21,9 @@ export default function Question({
   const [solution, setSolution] = useState(false);
 
   const isFeedback = questions[index].feedback;
+  let timer = 10000;
+  const skipAnswerCalled = useRef(false); // Memorizza se skipAnswer è già stato chiamato
+  
 
   // Mappa delle strategie per gestire la selezione
   const answerHandlers = {
@@ -42,6 +46,7 @@ export default function Question({
   const endAttempt = attempt >= questions[index].attempt ? true : false;
   const handleSelectedAnswer = useCallback(
     (selectedAnswer, type) => {
+      //console.log("setSelectedAnswer XXX",selectedAnswer,type)
       setSelectedAnswer((prevUserAnswers) => {
         // Se non esiste il metodo, torna lo stato precedente
         return (
@@ -53,6 +58,12 @@ export default function Question({
     [answerHandlers]
   );
 
+  //workaround, il problema è che il componente QuestionTimer si ricarica ogni volta che
+  //rispondo alla domanda perchè cambia la funzione skipAnswer se recupero il valore dallo stato
+  //scrivendo useRef evito il reload perchè cambio con current il valore 
+  if (selectedAnswer)
+    skipAnswerCalled.current=selectedAnswer
+
   useEffect(() => {
     setIdQuestion(
       Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
@@ -60,9 +71,17 @@ export default function Question({
   }, []);
 
   const handleConfirmAnswer = useCallback(() => {
+    console.log("selectedAnswer",selectedAnswer)
     onSelectAnswer(selectedAnswer);
     //onSetCurrentQuestion();
   }, [onSelectAnswer, selectedAnswer]);
+
+
+  //invio skipAnswerCalled.current perchè se avessi messo selectedAnswer verebbe aggiornata
+  //la funzione e avrebbe ricaricato il componente onTimeUp={skipAnswer}
+  const skipAnswer = useCallback(() => {
+    onSelectAnswer(skipAnswerCalled.current);
+  }, []);
 
   const handleSetConfirm = function handleSetConfirm() {
     setConfirmed(true);
@@ -126,6 +145,13 @@ export default function Question({
 
   return (
     <div id="question">
+      <QuestionTimer 
+        key={timer}
+        timeout={timer} 
+        onTimeUp={skipAnswer}
+        //onTimeUp={confirmed ? null}
+        //mode={answerState}
+      />
       <h2>{questions[index].text}</h2>
       <div className={` ${confirmed ? "disabled-button" : ""}`}>
         {renderType(
@@ -231,7 +257,7 @@ export default function Question({
       {!isFeedback && endAttempt && selectedAnswer.length > 0 && (
         <div className="container-btn">
           <Button onClick={handleConfirmAnswer} className="btn-primary">
-            Confirm XX
+            Confirm
           </Button>
         </div>
       )}
