@@ -11,8 +11,8 @@
     {
       "id": "q1",
       "shuffle":false,
-      "attempt":3,
-      "type":"single",
+      "attempt":1,
+      "type":"multiple",
       "text": "Which of the following definitions best describes React.js?",
       "answers": [
         {
@@ -22,7 +22,7 @@
         },
         {
           "text": "2 A library for managing state in web applications.",
-          "correct": false
+          "correct": true
         },
         {
           "text": "3 A framework to build user interfaces with help of imperative code.",
@@ -33,11 +33,6 @@
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
-      },
       "review":{
         "reviewText":"We recommend that you review topic 1"
       }
@@ -63,11 +58,6 @@
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
-      },
       "review":{
         "reviewText":"We recommend that you review topic 2"
       }
@@ -96,11 +86,7 @@
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
-      },
+      
       "review":{
         "reviewText":"We recommend that you review topic 3"
       }
@@ -129,11 +115,7 @@
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
-      },
+      
       "review":{
         "reviewText":"We recommend that you review topic 4"
       }
@@ -162,11 +144,7 @@
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
-      },
+      
       "review":{
         "reviewText":"We recommend that you review topic 5"
       }
@@ -195,11 +173,7 @@
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
-      },
+      
       "review":{
         "reviewText":"We recommend that you review topic 6"
       }
@@ -216,11 +190,7 @@
         { "text": "3 Using the && operator.", "correct": false },
         { "text": "4 Using an if-else statement.", "correct": false }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
-      },
+      
       "review":{
         "reviewText":"We recommend that you review topic 7"
       }

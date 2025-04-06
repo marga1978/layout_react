@@ -1,12 +1,12 @@
 import Header from './components/Header.jsx';
-import Quiz from './components/Quiz.jsx';
+import Page from './components/Page.jsx';
 
 function App() {
   return (
     <>
       <Header />
       <main>
-        <Quiz />
+        <Page />
       </main>
     </>
   );

@@ -1,47 +1,38 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from "react";
 
 //import QUESTIONS from '../questions.js';
-import Question from './Question.jsx';
-import Summary from './Summary.jsx';
-import CoverTest from './CoverTest.jsx';
+import Question from "./Question.jsx";
+import Summary from "./Summary.jsx";
+import CoverTest from "./CoverTest.jsx";
+import { shuffleArray } from "../utils/shuffle.js";
 
-export default function Quiz() {
+const processQuestions = (questions, shuffle = false, limit) => {
+  const result = [...questions]; // Crea sempre una copia dell'array originale
+  return (shuffle ? shuffleArray(result) : result).slice(0, limit ?? result.length);
+};
+
+export default function Quiz({data}) {
   const [userAnswers, setUserAnswers] = useState([]);
   const [start, setStart] = useState(false);
-  const [trackingTest, setTrackingTest]=useState(null);
+  const [trackingTest, setTrackingTest] = useState(null);
   const [quiz, setQuiz] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
 
-
-  useEffect(() => {
-    fetch("/data.json") // Assicurati che il file sia accessibile nel public folder
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Errore nel caricamento dei dati");
-        }
-        return response.json();
-      })
-      .then((jsonData) => {
-        setQuiz(jsonData);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []); // L'array vuoto assicura che l'effetto venga eseguito solo al montaggio
-
-  console.log("userAnswers",userAnswers)
-  console.log("trackingTest",trackingTest)
-  const activeQuestionIndex = userAnswers.length;
-  let quizIsComplete=false
-  if (quiz){
-    quizIsComplete= activeQuestionIndex === quiz.questions.length
+  function startQuiz(){
+    let questions=processQuestions(
+      data?.questions,
+      data?.shuffle,
+      data?.limit
+    );
+    setQuiz(questions);
   }
-  //const quizIsComplete = activeQuestionIndex === quiz.questions.length;
 
+  const activeQuestionIndex = userAnswers.length;
+  let quizIsComplete = false;
+  console.log("quiz",quiz)
+  if (quiz) {
+    quizIsComplete = activeQuestionIndex === quiz.length;
+  }
   const handleSelectAnswer = useCallback(function handleSelectAnswer(
     selectedAnswer
   ) {
@@ -51,39 +42,59 @@ export default function Quiz() {
   },
   []);
 
-  const handleTrackingTest = useCallback(function handleTrackingTest(objTrackingTest) {
+  const handleTrackingTest = useCallback(function handleTrackingTest(
+    objTrackingTest
+  ) {
     setTrackingTest(objTrackingTest);
-  },[])
+  },
+  []);
 
   const handleTryAgain = function handleTryAgain() {
-    setUserAnswers([])
+    setUserAnswers([]);
+    
     //setTrackingTest(objTrackingTest);
   };
 
-  
+  const clickStart = function clickStart() {
+    startQuiz()
+    setStart(true);
+  };
+  if (!quiz)
+    startQuiz()
 
-  const clickStart=function clickStart(){
-    setStart(true)
-  }
-
-  if(quiz && !start)
-    return <CoverTest onSelectStart={clickStart} limit={quiz.limit? quiz.limit : quiz.questions.length} masteryscore={quiz.masteryscore ? quiz.masteryscore : 0} />
+  if (quiz && !start)
+    return (
+      <CoverTest
+        onSelectStart={clickStart}
+        limit={data.limit ? data.limit : data.questions.length}
+        masteryscore={data.masteryscore ? data.masteryscore : 0}
+      />
+    );
 
   if (quizIsComplete) {
-    return <Summary userAnswers={userAnswers} questions={quiz.questions} onSetTrackingTest={handleTrackingTest} masteryscore={quiz.masteryscore ? quiz.masteryscore : 0} review={quiz.review} onCickTryAgain={handleTryAgain} />
+    return (
+      <Summary
+        userAnswers={userAnswers}
+        questions={quiz}
+        onSetTrackingTest={handleTrackingTest}
+        masteryscore={data.masteryscore ? data.masteryscore : 0}
+        review={data.review}
+        onCickTryAgain={handleTryAgain}
+      />
+    );
   }
 
   return (
     <div id="quiz">
-      {quiz && <Question
-        key={activeQuestionIndex}
-        questions={quiz.questions}
-        index={activeQuestionIndex}
-        onSelectAnswer={handleSelectAnswer}
-        // onSkipAnswer={handleSkipAnswer}
-      />
-      }
+      {quiz && (
+        <Question
+          key={activeQuestionIndex}
+          questions={quiz}
+          index={activeQuestionIndex}
+          onSelectAnswer={handleSelectAnswer}
+          // onSkipAnswer={handleSkipAnswer}
+        />
+      )}
     </div>
-    
   );
 }

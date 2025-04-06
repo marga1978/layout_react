@@ -4,6 +4,7 @@ import Multiple from "./Multiple.jsx";
 import Button from "./Button.jsx";
 import Feedback from "./Feedback.jsx";
 import { shuffleArray } from "../utils/shuffle";
+import { checkCorrects } from "../utils/checkCorrects";
 
 export default function Question({
   index,
@@ -23,11 +24,20 @@ export default function Question({
   // Mappa delle strategie per gestire la selezione
   const answerHandlers = {
     single: (prevUserAnswers, selectedAnswer) => [selectedAnswer], // Sovrascrive l'array
-    multiple: (prevUserAnswers, selectedAnswer) =>
-      prevUserAnswers.some((answer) => answer.id === selectedAnswer.id)
-        ? prevUserAnswers.filter((answer) => answer.id !== selectedAnswer.id) // Rimuove se presente
-        : [...prevUserAnswers, selectedAnswer], // Aggiunge se assente
+    multiple: (prevUserAnswers, selectedAnswer) => {
+      return prevUserAnswers.includes(selectedAnswer)
+      ? prevUserAnswers.filter(answer => answer !== selectedAnswer) // Rimuovi se già selezionato
+        : [...prevUserAnswers, selectedAnswer]              // Aggiungi se non presente
+    }
   };
+
+  // const checkCorrect={
+  //   single: () => selectedAnswer[0]?.correct !== undefined ? selectedAnswer[0].correct : false,
+  //   multiple: () => {
+  //     return selectedAnswer[0]?.correct !== undefined ? selectedAnswer[0].correct : false
+  //   }
+  // }
+
 
   const endAttempt = attempt >= questions[index].attempt ? true : false;
   const handleSelectedAnswer = useCallback(
@@ -109,6 +119,11 @@ export default function Question({
         return <h1>nessun tipo</h1>;
     }
   }
+
+  // console.log("isFeedback",isFeedback)
+  // console.log("endAttempt",endAttempt)
+  // console.log("selectedAnswer.length",selectedAnswer.length)
+
   return (
     <div id="question">
       <h2>{questions[index].text}</h2>
@@ -126,11 +141,12 @@ export default function Question({
           <Feedback
             isConfirmed={confirmed}
             isAnswered={selectedAnswer.length > 0}
-            isCorrect={
-              selectedAnswer[0]?.correct !== undefined
-                ? selectedAnswer[0].correct
-                : false
-            }
+            // isCorrect={
+            //   selectedAnswer[0]?.correct !== undefined
+            //     ? selectedAnswer[0].correct
+            //     : false
+            // }
+            isCorrect={checkCorrects(selectedAnswer)[questions[index].type]}
             idEndAttempt={endAttempt}
             isSolution={solution}
             textCorrect={
@@ -211,10 +227,11 @@ export default function Question({
           </div> */}
         </>
       )}
+     
       {!isFeedback && endAttempt && selectedAnswer.length > 0 && (
         <div className="container-btn">
           <Button onClick={handleConfirmAnswer} className="btn-primary">
-            Confirm
+            Confirm XX
           </Button>
         </div>
       )}
