@@ -15,7 +15,7 @@ export default function Summary({
 }) {
   
   function getTextCorrectAnswer(index){
-    return questions[index].answers.find(answer => answer.correct)?.text;
+    return questions[index].answers.filter(answer => answer.correct  === true).map(answer => answer.text).join("<br>");
   }
   function getTextReview(index){
     return questions[index].review.reviewText;
@@ -87,7 +87,7 @@ export default function Summary({
               <h3>{index + 1}</h3>
               <p className="question">{questions[index].text}</p>
               {review.showAnwswer && (<p className={cssClass}>User response: <br/> <span dangerouslySetInnerHTML={{ __html: getAnswers(answer)  ?? "Skipped" }} /> { checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <span>- Correct</span>} { !checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <span>- Wrong</span>}</p>)}
-              {review.showCorrect && !checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <p><strong>Correct answer:</strong> {getTextCorrectAnswer(index)}</p>}
+              {review.showCorrect && !checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <p><strong>Correct answer:</strong><br /> <span dangerouslySetInnerHTML={{ __html: getTextCorrectAnswer(index) }} /></p>}
               {review.showReview && !checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <p><strong> {getTextReview(index)} </strong></p>} 
 
 
