@@ -105,6 +105,38 @@ header h1 {
   margin: 0;
 }
 
+#question .question-time-text{
+  /* width:25%; */
+  display:inline-block;
+  padding: 0.3rem 2rem;
+  border: none;
+  border-radius: 24px;
+  /* background: linear-gradient(180deg, #81f1fb 0%, #73d2f8 100%); */
+  
+  transition: all 0.2s ease-in-out;
+  margin:auto;
+  
+  font-size:0.9rem
+}
+
+#question .question-time-text.blue{
+  background: #6cb7f5;
+  color:#000;
+}
+
+#question .question-time-text.orange{
+  background: #b36d1b;
+  color:#000;
+}
+
+#question .question-time-text.red{
+  background: #7c0b0b;
+  color:#fff;
+}
+
+question-time-text
+    
+
 #question progress::-webkit-progress-bar {
   background: #6a558a;
   border-radius: 24px;

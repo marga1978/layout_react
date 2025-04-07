@@ -1,6 +1,7 @@
 {
   "shuffle":false,
   "masteryscore":80,
+  "timer":15000,
   "--limit":5,
   "review": {
     "showAnwswer":true,
@@ -12,6 +13,7 @@
       "id": "q1",
       "shuffle":false,
       "attempt":1,
+      "--timer":3000,
       "type":"multiple",
       "text": "Which of the following definitions best describes React.js?",
       "answers": [
@@ -42,6 +44,7 @@
       "text": "What purpose do React hooks serve?",
       "shuffle":true,
       "attempt":1,
+      "--timer":3000,
       "type":"single",
       "answers": [
         {
@@ -66,6 +69,7 @@
       "id": "q3",
       "shuffle":false,
       "attempt":1,
+      "--timer":5000,
       "type":"single",
       "text": "Can you identify what JSX is?",
       "answers": [
@@ -96,6 +100,7 @@
       "shuffle":false,
       "attempt":1,
       "type":"single",
+      "--timer":10000,
       "text": "What is the most common way to create a component in React?",
       "answers": [
         {
@@ -125,6 +130,7 @@
       "shuffle":false,
       "attempt":1,
       "type":"single",
+      "--timer":7000,
       "text": "What does the term \"React state\" imply?",
       "answers": [
         {
@@ -154,6 +160,7 @@
       "shuffle":false,
       "attempt":1,
       "type":"single",
+      "--timer":8000,
       "text": "How do you typically render list content in React apps?",
       "answers": [
         {
@@ -182,6 +189,7 @@
       "id": "q7",
       "shuffle":false,
       "attempt":1,
+      "--timer":9000,
       "type":"single",
       "text": "Which approach can NOT be used to render content conditionally?",
       "answers": [

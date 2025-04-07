@@ -21,7 +21,7 @@ export default function Question({
   const [solution, setSolution] = useState(false);
 
   const isFeedback = questions[index].feedback;
-  let timer = 10000;
+  const timer = questions[index].timer;
   const skipAnswerCalled = useRef(false); // Memorizza se skipAnswer è già stato chiamato
   
 
@@ -145,13 +145,12 @@ export default function Question({
 
   return (
     <div id="question">
+      {timer &&  (
       <QuestionTimer 
         key={timer}
         timeout={timer} 
         onTimeUp={skipAnswer}
-        //onTimeUp={confirmed ? null}
-        //mode={answerState}
-      />
+      />)}
       <h2>{questions[index].text}</h2>
       <div className={` ${confirmed ? "disabled-button" : ""}`}>
         {renderType(

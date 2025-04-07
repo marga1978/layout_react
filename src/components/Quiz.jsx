@@ -1,25 +1,32 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
 
 //import QUESTIONS from '../questions.js';
 import Question from "./Question.jsx";
 import Summary from "./Summary.jsx";
 import CoverTest from "./CoverTest.jsx";
+import QuestionTimer from "./QuestionTimer.jsx";
 import { shuffleArray } from "../utils/shuffle.js";
 
 const processQuestions = (questions, shuffle = false, limit) => {
   const result = [...questions]; // Crea sempre una copia dell'array originale
-  return (shuffle ? shuffleArray(result) : result).slice(0, limit ?? result.length);
+  return (shuffle ? shuffleArray(result) : result).slice(
+    0,
+    limit ?? result.length
+  );
 };
 
-export default function Quiz({data}) {
+export default function Quiz({ data }) {
   const [userAnswers, setUserAnswers] = useState([]);
   const [start, setStart] = useState(false);
   const [trackingTest, setTrackingTest] = useState(null);
   const [quiz, setQuiz] = useState(null);
+  const refUserAnswers = useRef(false); // Memorizza se skipAnswer è già stato chiamato
+  const refQuiz = useRef(null); // Memorizza se skipAnswer è già stato chiamato
 
+  const timer = data.timer;
 
-  function startQuiz(){
-    let questions=processQuestions(
+  function startQuiz() {
+    let questions = processQuestions(
       data?.questions,
       data?.shuffle,
       data?.limit
@@ -33,7 +40,11 @@ export default function Quiz({data}) {
   // console.log("activeQuestionIndex",activeQuestionIndex)
   if (quiz) {
     quizIsComplete = activeQuestionIndex === quiz.length;
+    refQuiz.current=quiz
   }
+
+  if (userAnswers)
+    refUserAnswers.current=userAnswers
   const handleSelectAnswer = useCallback(function handleSelectAnswer(
     selectedAnswer
   ) {
@@ -53,16 +64,22 @@ export default function Quiz({data}) {
 
   const handleTryAgain = function handleTryAgain() {
     setUserAnswers([]);
-    
-    //setTrackingTest(objTrackingTest);
   };
 
+  const handleEndTimer = useCallback(() => {
+    let lastIndexAnswered = refUserAnswers.current.length;    
+    while (lastIndexAnswered < refQuiz.current.length) {
+       setUserAnswers(prev=> [...prev,null]);
+       lastIndexAnswered++;
+    }
+
+  }, []);
+
   const clickStart = function clickStart() {
-    startQuiz()
+    startQuiz();
     setStart(true);
   };
-  if (!quiz)
-    startQuiz()
+  if (!quiz) startQuiz();
 
   if (quiz && !start)
     return (
@@ -89,13 +106,18 @@ export default function Quiz({data}) {
   return (
     <div id="quiz">
       {quiz && (
-        <Question
-          key={activeQuestionIndex}
-          questions={quiz}
-          index={activeQuestionIndex}
-          onSelectAnswer={handleSelectAnswer}
-          // onSkipAnswer={handleSkipAnswer}
-        />
+        <>
+          {timer && !quizIsComplete && (
+            <QuestionTimer key={timer} timeout={timer} onTimeUp={handleEndTimer} />
+          )}
+          <Question
+            key={activeQuestionIndex}
+            questions={quiz}
+            index={activeQuestionIndex}
+            onSelectAnswer={handleSelectAnswer}
+            // onSkipAnswer={handleSkipAnswer}
+          />
+        </>
       )}
     </div>
   );
