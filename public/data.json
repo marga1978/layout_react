@@ -1,7 +1,7 @@
 {
   "shuffle":false,
   "masteryscore":80,
-  "timer":15000,
+  "--timer":15000,
   "--limit":5,
   "review": {
     "showAnwswer":true,
@@ -12,8 +12,8 @@
     {
       "id": "q1",
       "shuffle":false,
-      "attempt":1,
-      "--timer":3000,
+      "attempt":2,
+      "--timer":10000,
       "type":"multiple",
       "text": "Which of the following definitions best describes React.js?",
       "answers": [
@@ -35,6 +35,11 @@
           "correct": false
         }
       ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
       "review":{
         "reviewText":"We recommend that you review topic 1"
       }
@@ -43,7 +48,7 @@
       "id": "q2",
       "text": "What purpose do React hooks serve?",
       "shuffle":true,
-      "attempt":1,
+      "attempt":2,
       "--timer":3000,
       "type":"single",
       "answers": [
@@ -61,6 +66,11 @@
           "correct": false
         }
       ],
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
       "review":{
         "reviewText":"We recommend that you review topic 2"
       }
@@ -68,7 +78,7 @@
     {
       "id": "q3",
       "shuffle":false,
-      "attempt":1,
+      "attempt":2,
       "--timer":5000,
       "type":"single",
       "text": "Can you identify what JSX is?",
@@ -90,7 +100,11 @@
           "correct": false
         }
       ],
-      
+      "feedback":{
+        "correct":"Correct",
+        "wrong":"Wrong",
+        "tryagain":"Try again"
+      },
       "review":{
         "reviewText":"We recommend that you review topic 3"
       }

@@ -1,7 +1,8 @@
+import styles from './Page.module.scss';
 import { useState, useCallback, useEffect } from "react";
 
 //import QUESTIONS from '../questions.js';
-import Quiz from "./Quiz.jsx";
+import Quiz from "../QuizComponents/Quiz/Quiz.jsx";
 
 
 
@@ -36,9 +37,11 @@ export default function Page() {
 
   if (data)
     return (
-      <Quiz
-        data={data}
-
-      />
+      <>
+        <Quiz
+          data={data}
+        />
+      </>
+      
     );
 }

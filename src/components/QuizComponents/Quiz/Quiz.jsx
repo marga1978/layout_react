@@ -1,11 +1,12 @@
+import styles from './Quiz.module.scss';
 import { useState, useCallback, useRef } from "react";
 
 //import QUESTIONS from '../questions.js';
-import Question from "./Question.jsx";
-import Summary from "./Summary.jsx";
-import CoverTest from "./CoverTest.jsx";
-import QuestionTimer from "./QuestionTimer.jsx";
-import { shuffleArray } from "../utils/shuffle.js";
+import Question from "../Question/Question.jsx";
+import Summary from "../../Summary.jsx";
+import CoverTest from "../../CoverTest.jsx";
+import QuestionTimer from "../../QuestionTimer.jsx";
+import { shuffleArray } from "../../../utils/shuffle.js";
 
 const processQuestions = (questions, shuffle = false, limit) => {
   const result = [...questions]; // Crea sempre una copia dell'array originale
@@ -104,7 +105,7 @@ export default function Quiz({ data }) {
   }
 
   return (
-    <div id="quiz">
+    <div className={styles.quiz}>
       {quiz && (
         <>
           {timer && !quizIsComplete && (

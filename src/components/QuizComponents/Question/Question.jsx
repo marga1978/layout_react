@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect, useRef } from "react";
-import Single from "./Single.jsx";
-import Multiple from "./Multiple.jsx";
-import Button from "./Button.jsx";
-import Feedback from "./Feedback.jsx";
-import QuestionTimer from "./QuestionTimer";
-import { shuffleArray } from "../utils/shuffle";
-import { checkCorrects } from "../utils/checkCorrects";
+import Single from "../../Single.jsx";
+import Multiple from "../../Multiple.jsx";
+import Button from "../../Button.jsx";
+import Feedback from "../../Feedback.jsx";
+import WithExerciseProps from "../WithExerciseProps/WithExerciseProps.jsx";
+import QuestionTimer from "../../QuestionTimer";
+import { shuffleArray } from "../../../utils/shuffle";
+import { checkCorrects,getNumberAnswerCorrect } from "../../../utils/checkQuestions";
 
 export default function Question({
   index,
@@ -25,6 +26,7 @@ export default function Question({
   const skipAnswerCalled = useRef(false); // Memorizza se skipAnswer è già stato chiamato
   
 
+  
   // Mappa delle strategie per gestire la selezione
   const answerHandlers = {
     single: (prevUserAnswers, selectedAnswer) => [selectedAnswer], // Sovrascrive l'array
@@ -117,6 +119,8 @@ export default function Question({
               answers={shuffledAnswers}
               type={type}
               solution={solution}
+              confirmed={confirmed}
+              endAttempt={endAttempt}
               onSelectAnswer={handleSelectedAnswer}
             />
           </div>
@@ -128,6 +132,9 @@ export default function Question({
               key={idQuestion}
               answers={shuffledAnswers}
               type={type}
+              solution={solution}
+              confirmed={confirmed}
+              endAttempt={endAttempt}
               onSelectAnswer={handleSelectedAnswer}
             />
           </div>
@@ -145,6 +152,7 @@ export default function Question({
 
   return (
     <div id="question">
+      
       {timer &&  (
       <QuestionTimer 
         key={timer}
@@ -163,6 +171,7 @@ export default function Question({
 
       {isFeedback && (
         <>
+          
           <Feedback
             isConfirmed={confirmed}
             isAnswered={selectedAnswer.length > 0}
@@ -171,7 +180,7 @@ export default function Question({
             //     ? selectedAnswer[0].correct
             //     : false
             // }
-            isCorrect={checkCorrects(selectedAnswer)[questions[index].type]}
+            isCorrect={checkCorrects(selectedAnswer, getNumberAnswerCorrect(index,questions))[questions[index].type]()}
             idEndAttempt={endAttempt}
             isSolution={solution}
             textCorrect={
@@ -194,62 +203,6 @@ export default function Question({
             handleTryAgainAnswer={handleTryAgainAnswer}
             handleSolutionAnswer={handleSolutionAnswer}
           />
-
-          {/* {!confirmed && selectedAnswer.length > 0 && (
-            <div className="container-btn">
-              <Button onClick={handleSetConfirm} className="btn-primary">
-                Confirm
-              </Button>
-            </div>
-          )} */}
-
-          {/* <div className="container-btn">
-            {confirmed &&
-              selectedAnswer.length > 0 &&
-              selectedAnswer[0].correct && (
-                <>
-                  <p>{questions[index].feedback.correct}</p>
-                  <Button onClick={handleConfirmAnswer} className="btn-primary">
-                    Next Question
-                  </Button>
-                </>
-              )}
-            {!endAttempt &&
-              confirmed &&
-              selectedAnswer.length > 0 &&
-              !selectedAnswer[0].correct && (
-                <>
-                  <p>{questions[index].feedback.tryagain}</p>
-                  <Button
-                    onClick={handleTryAgainAnswer}
-                    className="btn-primary"
-                  >
-                    Try again
-                  </Button>
-                </>
-              )}
-            {endAttempt &&
-              confirmed &&
-              selectedAnswer.length > 0 &&
-              !selectedAnswer[0].correct && (
-                <>
-                  <p>{questions[index].feedback.wrong}</p>
-                  {!solution && <Button
-                    onClick={handleSolutionAnswer}
-                    className="btn-primary"
-                  >
-                    Solution
-                  </Button>
-                  }
-                  {solution && <Button onClick={handleConfirmAnswer} className="btn-primary">
-                    Next Question
-                  </Button>
-                  }
-                </>
-              )}
-
-            
-          </div> */}
         </>
       )}
      

@@ -13,6 +13,10 @@ export default function Feedback({
   handleTryAgainAnswer,
   handleSolutionAnswer
 }) {
+
+  console.log(isConfirmed, "XX1 isConfirmed")
+  console.log(isAnswered, "XX2 isAnswered")
+  console.log(isCorrect, "XX3 isCorrect")
   return (
     <>
       <div className="container-btn">
@@ -22,6 +26,7 @@ export default function Feedback({
           </Button>
         )}
 
+        
         {isConfirmed && isAnswered && isCorrect && (
           <>
             <p>{textCorrect}</p>

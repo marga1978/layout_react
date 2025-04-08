@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from './Button.jsx';
 
 export default function Single({
-  answers, onSelectAnswer, type, solution
+  answers, onSelectAnswer, type, solution, endAttempt, confirmed
 }){
   
   const [activeIndices, setActiveIndices] = useState([]);
@@ -21,7 +21,8 @@ export default function Single({
     <ul id="answers">
       {answers.map((answer,index) => {
         const isActive = activeIndices.includes(index);
-        const isCorrect = solution && answer.correct;
+        console.log("answer",answer)
+        const isCorrect = (endAttempt && solution && answer.correct);
         return (
           <li key={answer.text} className="answer">
             <Button

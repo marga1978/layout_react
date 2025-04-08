@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import quizCompleteImg from "../assets/quiz-complete.png";
 import { calculatePercentage } from '../utils/calculatePercentage';
 import Button from "./Button.jsx";
-import { checkCorrects } from "../utils/checkCorrects";
+import { checkCorrects,getNumberAnswerCorrect } from "../utils/checkQuestions";
 // import QUESTIONS from '../questions.js';
 
 export default function Summary({
@@ -30,9 +30,9 @@ export default function Summary({
     return answersUser &&  answersUser.map(answer => answer.text).join("<br>");
   }
 
-  function getNumberAnswerCorrect(index){
-    return questions[index].answers.filter(answer => answer.correct === true).length;
-  }
+  // function getNumberAnswerCorrect(index){
+  //   return questions[index].answers.filter(answer => answer.correct === true).length;
+  // }
   const percentages = calculatePercentage(userAnswers,questions);
   //const wrongAnswersPerc = calcPerc(userAnswers, "wrong");
   const isPassed = percentages.correctPercentage >= masteryscore ? true : false;
@@ -78,7 +78,7 @@ export default function Summary({
         {userAnswers.map((answer, index) => {
           let cssClass = "user-answer";
 
-          if (checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]())
+          if (checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]())
             cssClass += " correct";
           else
             cssClass += " wrong";
@@ -86,9 +86,9 @@ export default function Summary({
             <li key={index}>
               <h3>{index + 1}</h3>
               <p className="question">{questions[index].text}</p>
-              {review.showAnwswer && (<p className={cssClass}>User response: <br/> <span dangerouslySetInnerHTML={{ __html: getAnswers(answer)  ?? "Skipped" }} /> { checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <span>- Correct</span>} { !checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <span>- Wrong</span>}</p>)}
-              {review.showCorrect && !checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <p><strong>Correct answer:</strong><br /> <span dangerouslySetInnerHTML={{ __html: getTextCorrectAnswer(index) }} /></p>}
-              {review.showReview && !checkCorrects(answer, getNumberAnswerCorrect(index))[getType(index)]() && <p><strong> {getTextReview(index)} </strong></p>} 
+              {review.showAnwswer && (<p className={cssClass}>User response: <br/> <span dangerouslySetInnerHTML={{ __html: getAnswers(answer)  ?? "Skipped" }} /> { checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() && <span>- Correct</span>} { !checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() && <span>- Wrong</span>}</p>)}
+              {review.showCorrect && !checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() && <p><strong>Correct answer:</strong><br /> <span dangerouslySetInnerHTML={{ __html: getTextCorrectAnswer(index) }} /></p>}
+              {review.showReview && !checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() && <p><strong> {getTextReview(index)} </strong></p>} 
 
 
             </li>
