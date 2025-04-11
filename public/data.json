@@ -1,8 +1,12 @@
 {
-  "shuffle":false,
+  "shuffle":true,
   "masteryscore":80,
   "--timer":15000,
   "--limit":5,
+  "category":{
+    "c1":1,
+    "c2":1
+  },
   "review": {
     "showAnwswer":true,
     "showCorrect":true,
@@ -13,6 +17,7 @@
       "id": "q1",
       "shuffle":false,
       "attempt":2,
+      "cat":"c1",
       "--timer":10000,
       "type":"multiple",
       "text": "Which of the following definitions best describes React.js?",
@@ -49,6 +54,7 @@
       "text": "What purpose do React hooks serve?",
       "shuffle":true,
       "attempt":2,
+      "cat":"c1",
       "--timer":3000,
       "type":"single",
       "answers": [
@@ -80,6 +86,7 @@
       "shuffle":false,
       "attempt":2,
       "--timer":5000,
+      "cat":"c1",
       "type":"single",
       "text": "Can you identify what JSX is?",
       "answers": [
@@ -114,6 +121,7 @@
       "shuffle":false,
       "attempt":1,
       "type":"single",
+      "cat":"c2",
       "--timer":10000,
       "text": "What is the most common way to create a component in React?",
       "answers": [
@@ -144,6 +152,7 @@
       "shuffle":false,
       "attempt":1,
       "type":"single",
+      "cat":"c2",
       "--timer":7000,
       "text": "What does the term \"React state\" imply?",
       "answers": [
@@ -174,6 +183,7 @@
       "shuffle":false,
       "attempt":1,
       "type":"single",
+      "cat":"c2",
       "--timer":8000,
       "text": "How do you typically render list content in React apps?",
       "answers": [
@@ -205,6 +215,7 @@
       "attempt":1,
       "--timer":9000,
       "type":"single",
+      "cat":"c2",
       "text": "Which approach can NOT be used to render content conditionally?",
       "answers": [
         { "text": "1 Using a the #if template syntax.", "correct": true },

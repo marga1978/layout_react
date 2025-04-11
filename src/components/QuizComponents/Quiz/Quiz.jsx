@@ -8,13 +8,38 @@ import CoverTest from "../../CoverTest.jsx";
 import QuestionTimer from "../../QuestionTimer.jsx";
 import { shuffleArray } from "../../../utils/shuffle.js";
 
-const processQuestions = (questions, shuffle = false, limit) => {
-  const result = [...questions]; // Crea sempre una copia dell'array originale
-  return (shuffle ? shuffleArray(result) : result).slice(
-    0,
-    limit ?? result.length
-  );
-};
+const processQuestions = (data, shuffle = false, limit) => {
+  // const result = [...questions]; // Crea sempre una copia dell'array originale
+  // return (shuffle ? shuffleArray(result) : result).slice(
+  //   0,
+  //   limit ?? result.length
+  // );
+
+  // Estrai l'array di domande e le categorie con i relativi limiti
+  const { questions, category } = data;
+  
+  // Array risultante
+  let result = [];
+  
+  // Per ogni categoria nel JSON
+  for (const cat in category) {
+    const limit = category[cat];
+    
+    // Filtra le domande per questa categoria
+    const categoryQuestions = questions.filter(q => q.cat === cat);
+    
+    // Applica shuffle se richiesto
+    const processedCategoryQuestions = shuffle ? 
+      shuffleArray([...categoryQuestions]).slice(0, limit) : 
+      [...categoryQuestions].slice(0, limit);
+    
+    // Aggiungi le domande al risultato
+    result = [...result, ...processedCategoryQuestions];
+  }
+  
+  // Opzionalmente puoi rimescolare l'intero array risultante
+  return shuffle ? shuffleArray(result) : result;
+}
 
 export default function Quiz({ data }) {
   const [userAnswers, setUserAnswers] = useState([]);
@@ -28,9 +53,10 @@ export default function Quiz({ data }) {
 
   function startQuiz() {
     let questions = processQuestions(
-      data?.questions,
+      data,
       data?.shuffle,
-      data?.limit
+      data?.limit,
+      data
     );
     setQuiz(questions);
   }

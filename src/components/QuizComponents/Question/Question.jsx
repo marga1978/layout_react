@@ -1,9 +1,9 @@
+import styles from './Question.module.scss';
 import { useState, useCallback, useEffect, useRef } from "react";
 import Single from "../../Single.jsx";
 import Multiple from "../../Multiple.jsx";
 import Button from "../../Button.jsx";
 import Feedback from "../../Feedback.jsx";
-import WithExerciseProps from "../WithExerciseProps/WithExerciseProps.jsx";
 import QuestionTimer from "../../QuestionTimer";
 import { shuffleArray } from "../../../utils/shuffle";
 import { checkCorrects,getNumberAnswerCorrect } from "../../../utils/checkQuestions";
@@ -36,15 +36,6 @@ export default function Question({
         : [...prevUserAnswers, selectedAnswer]              // Aggiungi se non presente
     }
   };
-
-  // const checkCorrect={
-  //   single: () => selectedAnswer[0]?.correct !== undefined ? selectedAnswer[0].correct : false,
-  //   multiple: () => {
-  //     return selectedAnswer[0]?.correct !== undefined ? selectedAnswer[0].correct : false
-  //   }
-  // }
-
-
   const endAttempt = attempt >= questions[index].attempt ? true : false;
   const handleSelectedAnswer = useCallback(
     (selectedAnswer, type) => {
@@ -118,9 +109,7 @@ export default function Question({
               key={idQuestion}
               answers={shuffledAnswers}
               type={type}
-              solution={solution}
-              confirmed={confirmed}
-              endAttempt={endAttempt}
+              {...commonProps}
               onSelectAnswer={handleSelectedAnswer}
             />
           </div>
@@ -132,9 +121,7 @@ export default function Question({
               key={idQuestion}
               answers={shuffledAnswers}
               type={type}
-              solution={solution}
-              confirmed={confirmed}
-              endAttempt={endAttempt}
+              {...commonProps}
               onSelectAnswer={handleSelectedAnswer}
             />
           </div>
@@ -145,6 +132,15 @@ export default function Question({
         return <h1>nessun tipo</h1>;
     }
   }
+
+  // Raggruppa le props comuni
+  const commonProps = {
+    isConfirmed:confirmed,
+    isAnswered:selectedAnswer.length > 0,
+    isCorrect:checkCorrects(selectedAnswer, getNumberAnswerCorrect(index,questions))[questions[index].type](),
+    isEndAttempt:endAttempt,
+    isSolution:solution
+  };
 
   // console.log("isFeedback",isFeedback)
   // console.log("endAttempt",endAttempt)
@@ -160,7 +156,7 @@ export default function Question({
         onTimeUp={skipAnswer}
       />)}
       <h2>{questions[index].text}</h2>
-      <div className={` ${confirmed ? "disabled-button" : ""}`}>
+      <div className={`${confirmed ? styles.disabled : ""}`}>
         {renderType(
           questions[index].type,
           questions[index].answers,
@@ -173,16 +169,7 @@ export default function Question({
         <>
           
           <Feedback
-            isConfirmed={confirmed}
-            isAnswered={selectedAnswer.length > 0}
-            // isCorrect={
-            //   selectedAnswer[0]?.correct !== undefined
-            //     ? selectedAnswer[0].correct
-            //     : false
-            // }
-            isCorrect={checkCorrects(selectedAnswer, getNumberAnswerCorrect(index,questions))[questions[index].type]()}
-            idEndAttempt={endAttempt}
-            isSolution={solution}
+            {...commonProps}
             textCorrect={
               questions[index]?.feedback.correct !== undefined
                 ? questions[index]?.feedback.correct
@@ -213,13 +200,6 @@ export default function Question({
           </Button>
         </div>
       )}
-      {/* {!endAttempt && selectedAnswer.length > 0 && (
-        <div className="container-btn">
-          <Button onClick={handleConfirmAnswer} className="btn-primary">
-            Confirm
-          </Button>
-        </div>
-      )} */}
     </div>
   );
 }

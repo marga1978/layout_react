@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Button from './Button.jsx';
 import React from 'react';
 
-const Single = React.memo( ({answers, onSelectAnswer, type, solution, confirmed, endAttempt}) =>
+const Single = React.memo( ({answers, onSelectAnswer, type, isSolution, isConfirmed, isEndAttempt}) =>
 {
   
-  console.log("entrooo",answers,type,solution)
+  console.log("entrooo",answers,type,isSolution)
   const [activeIndex, setActiveIndex] = useState(null);
   const handleClick=function handleClick(answer,type,index){
     onSelectAnswer(answer,type)
@@ -21,7 +21,7 @@ const Single = React.memo( ({answers, onSelectAnswer, type, solution, confirmed,
             (activeIndex === index) ? "selected-button" : ""
             // (solution && answer.correct)  ? " selected-correct" : ""
           } ${
-            (endAttempt && solution && answer.correct)  ? " selected-correct" : ""
+            (isEndAttempt && isSolution && answer.correct)  ? " selected-correct" : ""
           }`}>
               {answer.text}
            </Button>

@@ -3,7 +3,7 @@ export default function Feedback({
   isConfirmed,
   isAnswered,
   isCorrect,
-  idEndAttempt,
+  isEndAttempt,
   isSolution,
   textCorrect,
   textTryAgain,
@@ -36,7 +36,7 @@ export default function Feedback({
           </>
         )}
 
-        {!idEndAttempt && isConfirmed && isAnswered && !isCorrect && (
+        {!isEndAttempt && isConfirmed && isAnswered && !isCorrect && (
           <>
             <p>{textTryAgain}</p>
             <Button onClick={handleTryAgainAnswer} className="btn-primary">
@@ -45,7 +45,7 @@ export default function Feedback({
           </>
         )}
 
-        {idEndAttempt && isConfirmed && isAnswered && !isCorrect && (
+        {isEndAttempt && isConfirmed && isAnswered && !isCorrect && (
           <>
             <p>{textWrong}</p>
             {!isSolution && (
