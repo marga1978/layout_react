@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import quizCompleteImg from "../assets/quiz-complete.png";
-import { calculatePercentage } from '../utils/calculatePercentage';
+import { calculatePercentage, calculatePercentageCategories } from '../utils/calculatePercentage';
 import Button from "./Button.jsx";
 import { checkCorrects,getNumberAnswerCorrect } from "../utils/checkQuestions";
+import PerformanceCategories from './QuizComponents/PerformanceCategories/PerformanceCategories.jsx'
 // import QUESTIONS from '../questions.js';
 
 export default function Summary({
@@ -33,6 +34,9 @@ export default function Summary({
   // function getNumberAnswerCorrect(index){
   //   return questions[index].answers.filter(answer => answer.correct === true).length;
   // }
+
+  const objCategories=calculatePercentageCategories(userAnswers,questions)
+
   const percentages = calculatePercentage(userAnswers,questions);
   //const wrongAnswersPerc = calcPerc(userAnswers, "wrong");
   const isPassed = percentages.correctPercentage >= masteryscore ? true : false;
@@ -65,6 +69,9 @@ export default function Summary({
           <span className="text">answered incorrectly</span>
         </p>
       </div>
+      {objCategories &&  
+        <PerformanceCategories objCategories={objCategories} />
+      }
       {!isPassed && (
         <div className="summary-button">
           <p>

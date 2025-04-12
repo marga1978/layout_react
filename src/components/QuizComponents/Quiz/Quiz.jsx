@@ -23,7 +23,8 @@ const processQuestions = (data, shuffle = false, limit) => {
   
   // Per ogni categoria nel JSON
   for (const cat in category) {
-    const limit = category[cat];
+    const limit = category[cat].limit;
+    const labelCategory = category[cat].label;
     
     // Filtra le domande per questa categoria
     const categoryQuestions = questions.filter(q => q.cat === cat);
@@ -34,7 +35,7 @@ const processQuestions = (data, shuffle = false, limit) => {
       [...categoryQuestions].slice(0, limit);
     
     // Aggiungi le domande al risultato
-    result = [...result, ...processedCategoryQuestions];
+    result = [...result, ...processedCategoryQuestions.map(q => ({ ...q, cat, labelCategory }))];
   }
   
   // Opzionalmente puoi rimescolare l'intero array risultante

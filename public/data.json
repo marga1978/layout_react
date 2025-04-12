@@ -4,8 +4,8 @@
   "--timer":15000,
   "--limit":5,
   "category":{
-    "c1":1,
-    "c2":1
+    "c1": {"limit":3,"label":"categoria 1"},
+    "c2": {"limit":4,"label":"categoria 2"}
   },
   "review": {
     "showAnwswer":true,
