@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import quizCompleteImg from "../assets/quiz-complete.png";
-import { calculatePercentage, calculatePercentageCategories } from '../utils/calculatePercentage';
-import Button from "./Button.jsx";
-import { checkCorrects,getNumberAnswerCorrect } from "../utils/checkQuestions";
-import PerformanceCategories from './QuizComponents/PerformanceCategories/PerformanceCategories.jsx'
+import styles from './Summary.module.scss';
+import quizCompleteImg from "../../../assets/quiz-complete.png";
+import { calculatePercentage, calculatePercentageCategories } from '../../../utils/calculatePercentage';
+import Button from "../../Button/Button.jsx";
+import { checkCorrects,getNumberAnswerCorrect } from "../../../utils/checkQuestions";
+import PerformanceCategories from '../PerformanceCategories/PerformanceCategories.jsx'
 // import QUESTIONS from '../questions.js';
 
 export default function Summary({
@@ -49,7 +50,7 @@ export default function Summary({
     onCickTryAgain(false);
   };
   return (
-    <div id="summary">
+    <div className={styles.summary}>
       <img src={quizCompleteImg} alt="Trophy icon" />
       {isPassed && <h2>Quiz Completed! You have passed the test.</h2>}
       {!isPassed && (
@@ -59,14 +60,14 @@ export default function Summary({
           masteryscore: {masteryscore}%
         </h2>
       )}
-      <div id="summary-stats">
+      <div className={styles['summary-stats']}>
         <p>
-          <span className="number">{percentages.correctPercentage}%</span>
-          <span className="text">answered correctly</span>
+          <span className={styles['number']}>{percentages.correctPercentage}%</span>
+          <span className={styles['text']}>answered correctly</span>
         </p>
         <p>
-          <span className="number">{percentages.wrongPercentage}%</span>
-          <span className="text">answered incorrectly</span>
+          <span className={styles['number']}>{percentages.wrongPercentage}%</span>
+          <span className={styles['text']}>answered incorrectly</span>
         </p>
       </div>
       {objCategories &&  
@@ -83,16 +84,11 @@ export default function Summary({
       )}
       {review && <ol>
         {userAnswers.map((answer, index) => {
-          let cssClass = "user-answer";
-
-          if (checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]())
-            cssClass += " correct";
-          else
-            cssClass += " wrong";
+          let cssClass=`${styles['user-answer']} ${checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() ? styles.correct : styles.wrong}`
           return (
             <li key={index}>
-              <h3>{index + 1}</h3>
-              <p className="question">{questions[index].text}</p>
+              <h3 className={styles['question-number']}>{index + 1}</h3>
+              <p className={styles.question}>{questions[index].text}</p>
               {review.showAnwswer && (<p className={cssClass}>User response: <br/> <span dangerouslySetInnerHTML={{ __html: getAnswers(answer)  ?? "Skipped" }} /> { checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() && <span>- Correct</span>} { !checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() && <span>- Wrong</span>}</p>)}
               {review.showCorrect && !checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() && <p><strong>Correct answer:</strong><br /> <span dangerouslySetInnerHTML={{ __html: getTextCorrectAnswer(index) }} /></p>}
               {review.showReview && !checkCorrects(answer, getNumberAnswerCorrect(index,questions))[getType(index)]() && <p><strong> {getTextReview(index)} </strong></p>} 

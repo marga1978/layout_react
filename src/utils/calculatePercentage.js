@@ -50,10 +50,12 @@ export function calculatePercentageCategories(answers, questions) {
       };
     }
 
-    
-
-    // Consideriamo una risposta corretta se almeno una delle risposte è corretta
-    const isCorrect = userAnswers.some((a) => a.correct);
+    console.log("userAnswers",userAnswers)
+    // Consideriamo una risposta corretta se almeno una delle risposte è corretta e il numero
+    //di risposte corrette corrispndo al numero di corrette
+    const isCorrect = userAnswers.length===question.answers.filter(
+             (answerJson) => answerJson.correct === true
+           ).length  && userAnswers.every((a) => a.correct);
 
     categoryStats[category].total += 1;
     

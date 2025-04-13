@@ -1,0 +1,26 @@
+.btn-primary{
+    padding:0.5em;
+    border-radius:5px;
+    font-size:1rem;
+    border:0;
+    background:linear-gradient(180deg, #c1b2dd 0%, #c1b2dd 100%);
+    color:#321061;
+  
+    /*linear-gradient(180deg, #3e2a60 0%, #321061 100%)*/
+}
+  
+// .btn-primary:hover{  
+//     background:#c1b2dd;
+//     color:#321061;
+//     cursor:pointer
+// }
+
+.selected-button {
+    background: #f5a76c !important;
+    color: #2c203d;
+  }
+  .selected-correct {
+    background: #5af59d !important;
+    color: #2c203d;
+  }
+

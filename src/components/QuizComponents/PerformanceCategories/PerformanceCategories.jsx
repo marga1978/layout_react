@@ -29,9 +29,8 @@ export default function PerformanceCategories({
               className={styles['categories-card']}
             >
               <div className={styles['category-header']}>
-                <h3 className={styles['category-name']}>{category.labelCategory} - {category.cat}</h3>
-                <span className={`${styles['category-badge']} ${percentageClass}`}>/
-                {/* <span className={styles.category_badge}> */}
+                <h3 className={styles['category-name']}>{category.labelCategory}</h3>
+                <span className={`${styles['category-badge']} ${styles[`category-badge-${percentageClass}`]}`}>
                   {correct}/{total} ({percentage}%)
                 </span>
               </div>
@@ -50,6 +49,9 @@ export default function PerformanceCategories({
           );
         })}
       </div>
+      <div className={styles['spacing-bottom']}>
+      </div>
     </div>
+    
   );
 }

@@ -1,4 +1,4 @@
-import Button from "./Button.jsx";
+import Button from "../../Button/Button.jsx";
 export default function Feedback({
   isConfirmed,
   isAnswered,
@@ -13,10 +13,6 @@ export default function Feedback({
   handleTryAgainAnswer,
   handleSolutionAnswer
 }) {
-
-  console.log(isConfirmed, "XX1 isConfirmed")
-  console.log(isAnswered, "XX2 isAnswered")
-  console.log(isCorrect, "XX3 isCorrect")
   return (
     <>
       <div className="container-btn">

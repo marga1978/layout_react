@@ -3,18 +3,12 @@ import { useState, useCallback, useRef } from "react";
 
 //import QUESTIONS from '../questions.js';
 import Question from "../Question/Question.jsx";
-import Summary from "../../Summary.jsx";
-import CoverTest from "../../CoverTest.jsx";
-import QuestionTimer from "../../QuestionTimer.jsx";
+import Summary from "../Summary/Summary.jsx";
+import CoverTest from "../CoverTest/CoverTest.jsx";
+import QuestionTimer from "../QuestionTimer/QuestionTimer.jsx";
 import { shuffleArray } from "../../../utils/shuffle.js";
 
 const processQuestions = (data, shuffle = false, limit) => {
-  // const result = [...questions]; // Crea sempre una copia dell'array originale
-  // return (shuffle ? shuffleArray(result) : result).slice(
-  //   0,
-  //   limit ?? result.length
-  // );
-
   // Estrai l'array di domande e le categorie con i relativi limiti
   const { questions, category } = data;
   
@@ -36,10 +30,18 @@ const processQuestions = (data, shuffle = false, limit) => {
     
     // Aggiungi le domande al risultato
     result = [...result, ...processedCategoryQuestions.map(q => ({ ...q, cat, labelCategory }))];
-  }
-  
+  } 
   // Opzionalmente puoi rimescolare l'intero array risultante
   return shuffle ? shuffleArray(result) : result;
+}
+
+
+const getTotalQuestion = (categories) => {
+  return Object.values(categories)
+    .reduce((total, item) => total + (item.limit || 0), 0);
+  // Estrai l'array di domande e le categorie con i relativi limiti
+  
+  //return shuffle ? shuffleArray(result) : result;
 }
 
 export default function Quiz({ data }) {
@@ -113,7 +115,7 @@ export default function Quiz({ data }) {
     return (
       <CoverTest
         onSelectStart={clickStart}
-        limit={data.limit ? data.limit : data.questions.length}
+        limit={data.limit  ? data.limit : (data.category ? getTotalQuestion(data.category) : data.questions.length)}
         masteryscore={data.masteryscore ? data.masteryscore : 0}
       />
     );

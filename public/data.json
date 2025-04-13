@@ -1,11 +1,11 @@
 {
-  "shuffle":true,
+  "shuffle":false,
   "masteryscore":80,
   "--timer":15000,
   "--limit":5,
   "category":{
     "c1": {"limit":3,"label":"categoria 1"},
-    "c2": {"limit":4,"label":"categoria 2"}
+    "c2": {"limit":2,"label":"categoria 2"}
   },
   "review": {
     "showAnwswer":true,
@@ -18,7 +18,7 @@
       "shuffle":false,
       "attempt":2,
       "cat":"c1",
-      "--timer":10000,
+      "timer":20000,
       "type":"multiple",
       "text": "Which of the following definitions best describes React.js?",
       "answers": [

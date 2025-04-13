@@ -1,10 +1,10 @@
 import styles from './Question.module.scss';
 import { useState, useCallback, useEffect, useRef } from "react";
-import Single from "../../Single.jsx";
-import Multiple from "../../Multiple.jsx";
-import Button from "../../Button.jsx";
-import Feedback from "../../Feedback.jsx";
-import QuestionTimer from "../../QuestionTimer";
+import Single from "../TypeSingle/Single.jsx";
+import Multiple from "../TypeMultiple/Multiple.jsx";
+import Button from "../../Button/Button.jsx";
+import Feedback from "../Feedback/Feedback.jsx";
+import QuestionTimer from "../QuestionTimer/QuestionTimer";
 import { shuffleArray } from "../../../utils/shuffle";
 import { checkCorrects,getNumberAnswerCorrect } from "../../../utils/checkQuestions";
 
