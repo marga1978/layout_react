@@ -15,7 +15,7 @@ export default function QuestionTimer({ timeout, onTimeUp, mode }) {
 
   // if (percTime>90)
   //   cssClass="red"
-  const cssClass=(percTime>=70 && percTime<=90) ? styles.orange : ((percTime>90) ? styles.red : styles.blue);
+  const cssClass=(percTime>=70 && percTime<=90) ? styles.medium : ((percTime>90) ? styles.risk : styles.normal);
 
 
   return  (

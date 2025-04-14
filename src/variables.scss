@@ -1,0 +1,150 @@
+$primary-color:#ebe7ef;
+$secondary-color:#9d5af5;
+$tertiary-color: #6cb7f5;
+$black-color: #000;
+$black-color-soft:#191321;
+$white-color: #fff;
+//level color
+$normal-color:$tertiary-color;
+$risk-color:#7c0b0b;
+$risk-color-light:#730b4b;
+
+$medium-level:#b36d1b;
+$medium-level-light:#F59E0B;
+
+//status color score
+$high-color:#86c5a1;
+$high-color-dark:#004a35;
+$medium-color:#FEF3C7;
+$medium-color-dark:#92400E;
+$low-color:#FEE2E2;
+$low-color-dark:#991B1B;
+
+// Varianti e sfumature
+$secondary-light: #9e5ef8;
+$secondary-medium-light: #d8cde8;
+$secondary-extra-light: #c1b2dd;
+$secondary-dark: #6a558a;
+$secondary-medium:#a17eda;
+$secondary-soft:#895fc4;
+$secondary-extra-soft:#c18cfa;
+$secondary-extra-dark: #3a2353;
+$secondary-medium-dark: #594276;
+
+
+
+
+
+
+
+
+// global setting
+$color-main: $primary-color;
+$bg-gradient1:#3e2a60 0%;
+$bg-gradient2:#321061 100%;
+$gradient-degree:180deg;
+$shadow-box:1px 1px 8px 4px rgba(12, 5, 32, 0.6);
+//standard button 
+$button-bg-gradient1:$secondary-extra-light 0%;
+$button-bg-gradient2:$secondary-extra-light 100%;
+$button-gradient-degree:180deg;
+$button-hover-bg:$secondary-dark;
+$button-hover-color:$secondary-extra-light;
+//exercise button
+$exercise-standard-bg:$tertiary-color;
+$exercise-standard-color:#321061;
+$exercise-hover-bg:$secondary-color;
+$exercise-hover-color:$white-color;
+$exercise-selected-bg:#f5a76c;
+$exercise-selected-color:#2c203d;
+$exercise-correct-bg:#5af59d;
+$exercise-correct-color:#2c203d;
+//question timer
+$timer-progress-bar:$secondary-light;
+$timer-progress-bg:$secondary-dark;
+$timer-text-bg-normal:$normal-color;
+$timer-text-font-normal:$black-color;
+$timer-text-bg-medium:$medium-level;
+$timer-text-font-medium:$black-color;
+$timer-text-bg-risk:$risk-color;
+$timer-text-font-risk:$white-color;
+//performance categories
+//summary
+$bg-gradient-1:#a17eda 0%;
+$bg-gradient-2:#895fc4 100%;
+$summary-color:$black-color-soft;
+$summary-img-bg:$secondary-extra-soft;
+$summary-border-img:$secondary-extra-dark;
+$summary-text:$secondary-extra-dark;
+$summary-stat-text:$secondary-medium-dark;
+$summary-review-text:$secondary-extra-dark;
+$summary-high-color:$high-color;
+$summary-high-color-text:$high-color-dark;
+$summary-medium-color:$medium-color;
+$summary-medium-color-text:$medium-color-dark;
+$summary-low-color:$low-color;
+$summary-low-color-text:$low-color-dark;
+$summary-medium-color:$medium-level-light;
+$summary-risk-color:$risk-color-light;
+
+
+
+
+
+
+
+
+$colorMainBlack: #2d354A;
+$colorMainWhite: #FFFFFF;
+$colorLightGrey: #F3F3F3;
+$colorLightGreen: rgba(255,255,255,.5);
+$colorLightCyan: #0FD9FF;
+$colorTextPdfSintesi: #000;
+
+$clientSecondaryColor: #5495CF;
+$clientThirdColor: #e8e5e3;
+$clientFourthColor: #f7f5f0;
+$videoPlayerControlBarBG: #000;
+$videoPlayerControlBarText: #FFF;
+$videoPlayerProgress: rgba(255,255,255,.5); // barra di avanzamento video
+$videoPlayerProgressBg: $colorMainBlack; // sfondo barra di avanzamento video
+
+
+$max-width: 1920px;
+$headerColor: $colorMainBlack;
+$headerTextColor: $colorMainWhite;
+$footerBgColor: #B40C1E;
+$footerColor: #fff;
+$mainBgColor: #222;
+$greenColor: #8CC084;
+$redColor: rgb(228, 61, 64);
+$accessibleOutline: grey;
+
+$headerHeight: 50px;
+$footerHeight: 8px;
+$audioTranslationWidth: 25%;
+$audioTranslationWidthMobile: 45%;
+
+$popupHeaderHeight: 50px;
+
+$zindexModal: 9000;
+$zindexLandingPage: 8000;
+$zindexOverlay: 7000;
+$zindexBtnContinue: 6000;
+$zindexHeader: 5000;
+
+$container-max-widths: (
+        xs: 319px,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1440px,
+        xxl: 1920px
+);
+
+@function get-breakpoints($key: "md") {
+    @return map-get($container-max-widths, $key);
+}
+
+$font-main: 'Inter', 'Roboto', Arial, Helvetica, sans-serif;
+$font-secondary: 'Inter', 'Roboto', Arial, Helvetica, sans-serif;

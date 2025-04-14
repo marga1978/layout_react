@@ -1,13 +1,4 @@
-// @mixin answers {
-//     list-style: none;
-//     margin: 0;
-//     padding: 0;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     gap: 0.5rem;
-//   }
-
+@use '../../variables' as *;
 %base-answers {
     list-style: none;
     margin: 0;
@@ -30,44 +21,17 @@
             border: none;
             border-radius: 24px;
             /* background: linear-gradient(180deg, #81f1fb 0%, #73d2f8 100%); */
-            background: #6cb7f5;
+            background: $exercise-standard-bg;
+            color:$exercise-standard-color;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
 
 
             &:hover{                
-                background: #9d5af5;
-                color: white;
-            }    
-            // &.selected-button {
-            //     background: #f5a76c;
-            //     color: #2c203d;
-            // }
-
-            // .selected-correct {
-            //     background: #5af59d;
-            //     color: #2c203d;
-            // }
-            
-
-            
+                background: $exercise-hover-bg;
+                color: $exercise-hover-color;
+            }       
         }
-
-        
-        
-
-        // .selected-button {
-        //     background: #f5a76c;
-        //     color: #2c203d;
-        // }
-        // .selected-correct {
-        //     background: #5af59d;
-        //     color: #2c203d;
-        // }
-        // .wrong {
-        //       background: #f55a98;
-        //         color: #2c203d;
-        // }
     }
 }
 

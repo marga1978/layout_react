@@ -1,31 +1,4 @@
-/* File CSS per il componente CategoryReport */
-
-/* Container principale */
-.quiz-report-container {
-  padding: 24px;
-  max-width: 1024px;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-/* Titolo principale */
-.report-title {
-  font-size: 24px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-/* Sezione riepilogo */
-.summary-container {
-  background-color: #EFF6FF; /* blu chiaro */
-  padding: 16px;
-  border-radius: 8px;
-  margin-bottom: 24px;
-}
+@use '../../../variables' as *;
 
 .stats-grid {
   display: grid;
@@ -99,18 +72,18 @@
 
         .category-badge-high-score {
           // background-color: #8fbfab; /* verde chiaro */
-          background-color: #5af59d;
-          color: #065F46; /* verde scuro */
+          background-color: $summary-high-color;
+          color: $summary-high-color-text; /* verde scuro */
         }
         
         .category-badge-medium-score {
-          background-color: #FEF3C7; /* giallo chiaro */
-          color: #92400E; /* giallo scuro */
+          background-color: $summary-medium-color; /* giallo chiaro */
+          color: $summary-medium-color-text; /* giallo scuro */
         }
         
         .category-badge-low-score {
-          background-color: #FEE2E2; /* rosso chiaro */
-          color: #991B1B; /* rosso scuro */
+          background-color: $summary-low-color; /* rosso chiaro */
+          color: $summary-low-color-text; /* rosso scuro */
         }
       }
 
@@ -127,16 +100,16 @@
         
         .progress-bar-high-score {
           // background-color: #8fbfab; /* verde */
-          background-color: #5af59d;
+          background-color: $summary-high-color;
           
         }
         
         .progress-bar-medium-score {
-          background-color: #F59E0B; /* giallo */
+          background-color: $summary-medium-color; /* giallo */
         }
         
         .progress-bar-low-score {
-          background-color: #730b4b; /* rosso */
+          background-color: $summary-risk-color; /* rosso */
         }
       }
 
@@ -164,7 +137,7 @@
     width: 60%;
     margin: 0.3rem auto;
     padding-bottom: 0.3rem;
-    border-bottom: 2px solid #594276;
+    border-bottom: 2px solid $summary-stat-text;
   }
 
   

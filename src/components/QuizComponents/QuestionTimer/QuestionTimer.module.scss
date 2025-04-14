@@ -1,17 +1,18 @@
+@use '../../../variables' as *;
 .progress {
     width: 50%;
     height: 0.5rem;
     border-radius: 24px;
-    background: #9e5ef8;
+    background: $timer-progress-bar;
     margin: 0;
 
     &::-webkit-progress-bar {
-        background: #6a558a;
+        background: $timer-progress-bg;
         border-radius: 24px;
       }
       
      &::-webkit-progress-value {
-        background: #9e5ef8;
+        background: $timer-progress-bar;
         border-radius: 24px;
       }
       
@@ -26,18 +27,18 @@
     margin:auto; 
     font-size:0.9rem;
 
-    &.blue{
-        background: #6cb7f5;
-        color:#000;
+    &.normal{
+        background: $timer-text-bg-normal;
+        color:$timer-text-font-normal;
       }
       
-     &.orange{
-        background: #b36d1b;
-        color:#000;
+     &.medium{
+        background: $timer-text-bg-medium;
+        color:$timer-text-font-medium;
       }
       
-      &.red{
-        background: #7c0b0b;
-        color:#fff;
+      &.risk{
+        background: $timer-text-bg-risk;
+        color:$timer-text-font-risk
       }
 }

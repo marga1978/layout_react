@@ -1,10 +1,18 @@
+@use '../../variables' as *;
+
 .btn-primary{
     padding:0.5em;
     border-radius:5px;
     font-size:1rem;
     border:0;
-    background:linear-gradient(180deg, #c1b2dd 0%, #c1b2dd 100%);
-    color:#321061;
+    background:linear-gradient($button-gradient-degree, $button-bg-gradient1, $button-bg-gradient2);
+    color:$exercise-standard-color;
+
+    &:hover{
+          background:$button-hover-bg;
+          color:$button-hover-color;
+          cursor:pointer
+    }
   
     /*linear-gradient(180deg, #3e2a60 0%, #321061 100%)*/
 }
@@ -16,11 +24,13 @@
 // }
 
 .selected-button {
-    background: #f5a76c !important;
-    color: #2c203d;
+    background: $exercise-selected-bg !important;
+    color: $exercise-selected-color;
   }
   .selected-correct {
-    background: #5af59d !important;
-    color: #2c203d;
+    background: $exercise-correct-bg !important;
+    color: $exercise-correct-color;
   }
+
+
 
