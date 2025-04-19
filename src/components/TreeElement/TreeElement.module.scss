@@ -1,0 +1,12 @@
+@use '../../variables' as *;
+.bgElement {
+    max-width: 80rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient($gradient-degree, $bg-gradient-1, $bg-gradient-2);
+    color: $summary-color;
+    border-radius: 8px;
+    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.6);
+    animation: slide-in-from-bottom 0.7s ease-out;
+
+}

@@ -44,6 +44,9 @@ $bg-gradient1:#3e2a60 0%;
 $bg-gradient2:#321061 100%;
 $gradient-degree:180deg;
 $shadow-box:1px 1px 8px 4px rgba(12, 5, 32, 0.6);
+$gradient-degree-bg-logo:90deg;
+$gradient-bg-logo-1:#e781fb 40%;
+$gradient-bg-logo-2:#8e76fa 60%;
 //standard button 
 $button-bg-gradient1:$secondary-extra-light 0%;
 $button-bg-gradient2:$secondary-extra-light 100%;
@@ -94,57 +97,57 @@ $summary-risk-color:$risk-color-light;
 
 
 
-$colorMainBlack: #2d354A;
-$colorMainWhite: #FFFFFF;
-$colorLightGrey: #F3F3F3;
-$colorLightGreen: rgba(255,255,255,.5);
-$colorLightCyan: #0FD9FF;
-$colorTextPdfSintesi: #000;
+// $colorMainBlack: #2d354A;
+// $colorMainWhite: #FFFFFF;
+// $colorLightGrey: #F3F3F3;
+// $colorLightGreen: rgba(255,255,255,.5);
+// $colorLightCyan: #0FD9FF;
+// $colorTextPdfSintesi: #000;
 
-$clientSecondaryColor: #5495CF;
-$clientThirdColor: #e8e5e3;
-$clientFourthColor: #f7f5f0;
-$videoPlayerControlBarBG: #000;
-$videoPlayerControlBarText: #FFF;
-$videoPlayerProgress: rgba(255,255,255,.5); // barra di avanzamento video
-$videoPlayerProgressBg: $colorMainBlack; // sfondo barra di avanzamento video
+// $clientSecondaryColor: #5495CF;
+// $clientThirdColor: #e8e5e3;
+// $clientFourthColor: #f7f5f0;
+// $videoPlayerControlBarBG: #000;
+// $videoPlayerControlBarText: #FFF;
+// $videoPlayerProgress: rgba(255,255,255,.5); // barra di avanzamento video
+// $videoPlayerProgressBg: $colorMainBlack; // sfondo barra di avanzamento video
 
 
-$max-width: 1920px;
-$headerColor: $colorMainBlack;
-$headerTextColor: $colorMainWhite;
-$footerBgColor: #B40C1E;
-$footerColor: #fff;
-$mainBgColor: #222;
-$greenColor: #8CC084;
-$redColor: rgb(228, 61, 64);
-$accessibleOutline: grey;
+// $max-width: 1920px;
+// $headerColor: $colorMainBlack;
+// $headerTextColor: $colorMainWhite;
+// $footerBgColor: #B40C1E;
+// $footerColor: #fff;
+// $mainBgColor: #222;
+// $greenColor: #8CC084;
+// $redColor: rgb(228, 61, 64);
+// $accessibleOutline: grey;
 
-$headerHeight: 50px;
-$footerHeight: 8px;
-$audioTranslationWidth: 25%;
-$audioTranslationWidthMobile: 45%;
+// $headerHeight: 50px;
+// $footerHeight: 8px;
+// $audioTranslationWidth: 25%;
+// $audioTranslationWidthMobile: 45%;
 
-$popupHeaderHeight: 50px;
+// $popupHeaderHeight: 50px;
 
-$zindexModal: 9000;
-$zindexLandingPage: 8000;
-$zindexOverlay: 7000;
-$zindexBtnContinue: 6000;
-$zindexHeader: 5000;
+// $zindexModal: 9000;
+// $zindexLandingPage: 8000;
+// $zindexOverlay: 7000;
+// $zindexBtnContinue: 6000;
+// $zindexHeader: 5000;
 
-$container-max-widths: (
-        xs: 319px,
-        sm: 576px,
-        md: 768px,
-        lg: 992px,
-        xl: 1440px,
-        xxl: 1920px
-);
+// $container-max-widths: (
+//         xs: 319px,
+//         sm: 576px,
+//         md: 768px,
+//         lg: 992px,
+//         xl: 1440px,
+//         xxl: 1920px
+// );
 
-@function get-breakpoints($key: "md") {
-    @return map-get($container-max-widths, $key);
-}
+// @function get-breakpoints($key: "md") {
+//     @return map-get($container-max-widths, $key);
+// }
 
-$font-main: 'Inter', 'Roboto', Arial, Helvetica, sans-serif;
-$font-secondary: 'Inter', 'Roboto', Arial, Helvetica, sans-serif;
+// $font-main: 'Inter', 'Roboto', Arial, Helvetica, sans-serif;
+// $font-secondary: 'Inter', 'Roboto', Arial, Helvetica, sans-serif;

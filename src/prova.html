@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+ <script>
+// Struttura dati per l'albero genealogico
+const alberoGenealogico = {
+  id: "padre",
+  nome: "Padre",
+  livello: 0,
+  figli: [
+    {
+      id: "figlio1",
+      nome: "Figlio 1",
+      livello: 1,
+      figli: [
+        { id: "nipote1-1", nome: "Nipote 1.1", livello: 2, figli: [] },
+        { id: "nipote1-2", nome: "Nipote 1.2", livello: 2, figli: [] },
+        { id: "nipote1-3", nome: "Nipote 1.3", livello: 2, figli: [] }
+      ]
+    },
+    {
+      id: "figlio2",
+      nome: "Figlio 2",
+      livello: 1,
+      figli: [
+        { id: "nipote2-1", nome: "Nipote 2.1", livello: 2, figli: [] },
+        { id: "nipote2-2", nome: "Nipote 2.2", livello: 2, figli: [] }
+      ]
+    },
+    {
+      id: "figlio3",
+      nome: "Figlio 3",
+      livello: 1,
+      figli: []
+    },
+    {
+      id: "figlio4",
+      nome: "Figlio 4",
+      livello: 1,
+      figli: [
+        { id: "nipote4-1", nome: "Nipote 4.1", livello: 2, figli: [] }
+      ]
+    }
+  ]
+};
+
+// Funzione per generare SVG dinamicamente
+function generaAlberoGenealogico(data, width = 800, height = 600) {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  
+  // Stili
+  const style = document.createElementNS(svgNS, "style");
+  style.textContent = `
+    .cerchio { fill: white; stroke: #333; stroke-width: 2; }
+    .linea { stroke: #333; stroke-width: 2; }
+    .testo { font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; dominant-baseline: middle; }
+  `;
+  svg.appendChild(style);
+  
+  // Mappa per memorizzare le posizioni di ogni nodo
+  const posizioni = new Map();
+  
+  // Funzione ricorsiva per calcolare le posizioni
+  function calcolaPosizioni(nodo, x, y, spazioOrizzontale) {
+    posizioni.set(nodo.id, { x, y, nodo });
+    
+    if (nodo.figli && nodo.figli.length > 0) {
+      const numeroFigli = nodo.figli.length;
+      const nuovoSpazio = spazioOrizzontale / numeroFigli;
+      const startX = x - spazioOrizzontale / 2 + nuovoSpazio / 2;
+      
+      nodo.figli.forEach((figlio, index) => {
+        const figlioX = startX + index * nuovoSpazio;
+        const figlioY = y + 100;
+        calcolaPosizioni(figlio, figlioX, figlioY, nuovoSpazio * 0.8);
+      });
+    }
+  }
+  
+  // Calcola le posizioni partendo dal centro
+  calcolaPosizioni(data, width / 2, 50, width * 0.8);
+  
+  // Funzione per disegnare le linee
+  function disegnaLinee(nodo) {
+    const posGenitore = posizioni.get(nodo.id);
+    
+    if (nodo.figli && nodo.figli.length > 0) {
+      nodo.figli.forEach(figlio => {
+        const posFiglio = posizioni.get(figlio.id);
+        const linea = document.createElementNS(svgNS, "path");
+        linea.setAttribute("d", `M${posGenitore.x} ${posGenitore.y + 25} L${posFiglio.x} ${posFiglio.y - 25}`);
+        linea.setAttribute("class", "linea");
+        linea.setAttribute("fill", "none");
+        svg.appendChild(linea);
+        
+        // Ricorsione per disegnare le linee dei figli
+        disegnaLinee(figlio);
+      });
+    }
+  }
+  
+  // Funzione per disegnare i cerchi e i testi
+  function disegnaNodi() {
+    for (const [id, pos] of posizioni) {
+      // Disegna il cerchio
+      const cerchio = document.createElementNS(svgNS, "circle");
+      cerchio.setAttribute("cx", pos.x);
+      cerchio.setAttribute("cy", pos.y);
+      cerchio.setAttribute("r", "25");
+      cerchio.setAttribute("class", "cerchio");
+      svg.appendChild(cerchio);
+      
+      // Disegna il testo
+      const testo = document.createElementNS(svgNS, "text");
+      testo.setAttribute("x", pos.x);
+      testo.setAttribute("y", pos.y);
+      testo.setAttribute("class", "testo");
+      testo.textContent = pos.nodo.nome;
+      svg.appendChild(testo);
+    }
+  }
+  
+  // Disegna prima le linee e poi i nodi
+  disegnaLinee(data);
+  disegnaNodi();
+  
+  return svg;
+}
+
+// Esempio di utilizzo
+const alberoSVG = generaAlberoGenealogico(alberoGenealogico);
+document.body.appendChild(alberoSVG);
+
+ </script>
+</body>
+</html>
