@@ -5,7 +5,42 @@ import { calculatePercentage, calculatePercentageCategories } from '../../../uti
 import Button from "../../Button/Button.jsx";
 import { checkCorrects,getNumberAnswerCorrect } from "../../../utils/checkQuestions";
 import PerformanceCategories from '../PerformanceCategories/PerformanceCategories.jsx'
+import TreeQuestions from "../TreeQuestions/TreeQuestions.jsx"
 // import QUESTIONS from '../questions.js';
+
+
+const strutturaDomande = {
+  id: "root",
+  testoBreve: "Obiettivo generale",
+  isCorretta: null,
+  opzioni: [
+    {
+      id: "obiettivo1",
+      testoBreve: "",
+      isCorretta: null,
+      opzioni: [
+        { id: "obiettivo1-1", testoBreve: "", isCorretta: true },
+        { id: "obiettivo1-2", testoBreve: "", isCorretta: false },
+        { id: "obiettivo1-3", testoBreve: "", isCorretta: null,
+        opzioni: [
+            {id: "obiettivo1-3-1", nome: "",  isCorretta: true},
+            {id: "obiettivo1-3-2", nome: "",  isCorretta: true},
+            {id: "obiettivo1-3-3", nome: "",  isCorretta: true}
+          ]  },
+      ],
+    },
+    {
+      id: "obiettivo2",
+      testoBreve: "",
+      opzioni: [
+        { id: "obiettivo2-1", testoBreve: "", isCorretta: false },
+        { id: "obiettivo2-2", testoBreve: "", isCorretta: true },
+      ],
+    },
+    { id: "obiettivo3", testoBreve: "?", isCorretta: true }, // Nodo foglia (risposta diretta)
+  ],
+};
+
 
 export default function Summary({
   userAnswers,
@@ -16,6 +51,10 @@ export default function Summary({
   masteryscore,
 }) {
   
+
+  console.log("userAnswersXXX",userAnswers)
+  console.log("questionssXXX",questions)
+
   function getTextCorrectAnswer(index){
     return questions[index].answers.filter(answer => answer.correct  === true).map(answer => answer.text).join("<br>");
   }
@@ -98,6 +137,9 @@ export default function Summary({
           );
         })}
       </ol>
+      }
+      {
+        <TreeQuestions domande={strutturaDomande} />
       }
     </div>
   );
