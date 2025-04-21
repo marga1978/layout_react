@@ -127,7 +127,6 @@ export default function Quiz({ data }) {
         questions={quiz}
         category={data.category}
         tree={data.tree}
-        organizations={data.organizations}
         onSetTrackingTest={handleTrackingTest}
         masteryscore={data.masteryscore ? data.masteryscore : 0}
         review={data.review}

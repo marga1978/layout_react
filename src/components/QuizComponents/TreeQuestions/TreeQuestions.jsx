@@ -24,7 +24,7 @@ const TreeQuestions = ({ domande }) => {
   // Calcola la percentuale basata sui nodi foglia
   const calculatePercentage = (domanda) => {
     const leafNodes = getLeafNodes(domanda);
-    const correctLeaves = leafNodes.filter(leaf => leaf.isCorretta).length;
+    const correctLeaves = leafNodes.filter(leaf => leaf.isCorrect).length;
     const totalLeaves = leafNodes.length;
     
     if (totalLeaves === 0) return 0;
@@ -34,7 +34,7 @@ const TreeQuestions = ({ domande }) => {
   const getNodeColorDomanda = (domanda) => {
     if (!domanda.opzioni || domanda.opzioni.length === 0) {
       // È un nodo foglia
-      return domanda.isCorretta ? '#98FB98' : '#FFB6C1';
+      return domanda.isCorrect ? '#98FB98' : '#FFB6C1';
     }
     
     // È un nodo intermedio - calcola basandosi sui nodi foglia
@@ -45,7 +45,7 @@ const TreeQuestions = ({ domande }) => {
   const getNodeTextDomanda = (domanda) => {
     if (!domanda.opzioni || domanda.opzioni.length === 0) {
       // È un nodo foglia
-      return domanda.isCorretta ? '100%' : '0%';
+      return domanda.isCorrect ? '100%' : '0%';
     }
     
     // È un nodo intermedio - calcola basandosi sui nodi foglia

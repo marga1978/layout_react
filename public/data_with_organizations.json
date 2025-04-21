@@ -1,25 +1,56 @@
 {
-  "shuffle": true,
+  "shuffle": false,
   "masteryscore": 80,
   "--timer": 15000,
   "--limit": 5,
+  "organizations":
+    {
+      "id": "ceo",
+      "nome": "Amministratore Delegato",
+      "reparto": "Direzione",
+      "sottoposti": [
+        {
+          "id": "manager-vendite",
+          "nome": "Responsabile Vendite",
+          "reparto": "Vendite",
+          "sottoposti": [
+            { "id": "agente1", "nome": "Agente 1", "reparto": "Vendite" },
+            { "id": "agente2", "nome": "Agente 2", "reparto": "Vendite" }
+          ]
+        },
+        {
+          "id": "manager-marketing",
+          "nome": "Responsabile Marketing",
+          "reparto": "Marketing",
+          "sottoposti": [
+            { "id": "specialista-seo", "nome": "Specialista SEO", "reparto": "Marketing" },
+            { "id": "copywriter", "nome": "Copywriter", "reparto": "Marketing",
+              "sottoposti": [
+                { "id": "sottoposto-video", "nome": "sottoposto video", "reparto": "Marketing" },
+                { "id": "sottoposto-grafico", "nome": "ottoposto grafico", "reparto": "Marketing" }
+              ] 
+            }
+          ]
+        }
+      ]
+  },
   "category": {
     "c1": {
       "limit": 2,
       "label": "categoria 1",
-      "--treeLabel": ["obiettivo1-1", "obiettivo1-2"]
+      "treeLabel": ["obiettivo1-1", "obiettivo1-2"]
     },
     "c2": {
       "limit": 3,
       "label": "categoria 2",
-      "--treeLabel": ["obiettivo1-3-1", "obiettivo1-3-2", "obiettivo1-3-3"]
+      "treeLabel": ["obiettivo1-3-1", "obiettivo1-3-2", "obiettivo1-3-3"]
     },
     "c3": {
       "limit": 2,
       "label": "categoria 3",
-      "--treeLabel": ["obiettivo2-1", "obiettivo2-2"]
+      "treeLabel": ["obiettivo2-1", "obiettivo2-2"]
     },
-    "c4": { "limit": 1, "label": "categoria 4", "--treeLabel": ["obiettivo3-1"] }
+    "c4": { "limit": 1, "label": "categoria 4" }
   },
   "review": {
     "showAnwswer": true,
@@ -64,6 +95,41 @@
       }
     }
   ],
+  "--tree": {
+    "id": "root",
+    "testoBreve": "Obiettivo generale",
+    "isCorretta": null,
+    "opzioni": [
+      {
+        "id": "obiettivo1",
+        "testoBreve": "",
+        "isCorretta": null,
+        "opzioni": [
+          { "id": "obiettivo1-1", "testoBreve": "", "isCorretta": true },
+          { "id": "obiettivo1-2", "testoBreve": "", "isCorretta": false },
+          {
+            "id": "obiettivo1-3",
+            "testoBreve": "",
+            "isCorretta": null,
+            "opzioni": [
+              { "id": "obiettivo1-3-1", "testoBreve": "", "isCorretta": true },
+              { "id": "obiettivo1-3-2", "testoBreve": "", "isCorretta": true },
+              { "id": "obiettivo1-3-3", "testoBreve": "", "isCorretta": true }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "obiettivo2",
+        "testoBreve": "",
+        "opzioni": [
+          { "id": "obiettivo2-1", "testoBreve": "", "isCorretta": false },
+          { "id": "obiettivo2-2", "testoBreve": "", "isCorretta": true }
+        ]
+      },
+      { "id": "obiettivo3", "testoBreve": "?", "isCorretta": true }
+    ]
+  },
   "questions": [
     {
       "id": "q1",

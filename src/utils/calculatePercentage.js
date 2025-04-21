@@ -50,7 +50,7 @@ export function calculatePercentageCategories(answers, questions) {
       };
     }
 
-    console.log("userAnswers",userAnswers)
+    //console.log("userAnswers",userAnswers)
     // Consideriamo una risposta corretta se almeno una delle risposte è corretta e il numero
     //di risposte corrette corrispndo al numero di corrette
     const isCorrect = userAnswers.length===question.answers.filter(

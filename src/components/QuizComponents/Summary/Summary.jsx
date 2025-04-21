@@ -11,10 +11,11 @@ import {createTreeStructureQuestions} from "../../../utils/TreeStructureQuestion
 import {
   checkCorrects,
   getNumberAnswerCorrect,
+  createObjIdCorrectsAnswer
 } from "../../../utils/checkQuestions";
 import PerformanceCategories from "../PerformanceCategories/PerformanceCategories.jsx";
 import TreeQuestions from "../TreeQuestions/TreeQuestions.jsx";
-import TreeOrganizations from "../../TreeOrganizations/TreeOrganizations";
+//import TreeOrganizations from "../../TreeOrganizations/TreeOrganizations";
 // import QUESTIONS from '../questions.js';
 
 // const strutturaDomande = {
@@ -124,7 +125,6 @@ export default function Summary({
   onCickTryAgain,
   category,
   tree,
-  organizations,
   review,
   onSetTrackingTest,
   masteryscore,
@@ -156,14 +156,21 @@ export default function Summary({
   //   return questions[index].answers.filter(answer => answer.correct === true).length;
   // }
 
-  const objCategories = calculatePercentageCategories(userAnswers, questions);
+  const objCategories = calculatePercentageCategories(userAnswers, questions,questions);
 
   const percentages = calculatePercentage(userAnswers, questions);
   //const wrongAnswersPerc = calcPerc(userAnswers, "wrong");
   const isPassed = percentages.correctPercentage >= masteryscore ? true : false;
 
 
-  console.log("XXXXXXX",createTreeStructureQuestions(tree,category))
+  
+  
+
+  console.log("XXXXX 1 tree",tree)
+  console.log("XXXXX 1 category",category)
+  console.log("XXXXX 1 correct",createObjIdCorrectsAnswer(userAnswers,questions))
+  console.log("XXXXXXX",createTreeStructureQuestions(tree, category, createObjIdCorrectsAnswer(userAnswers,questions)).tree)
+  //console.log("XXXXXXX",createTreeStructureQuestions(tree,category,questions))
   useEffect(() => {
     onSetTrackingTest({
       score: percentages.correctPercentage,
@@ -270,8 +277,9 @@ export default function Summary({
           })}
         </ol>
       )}
-      {<TreeQuestions domande={createTreeStructureQuestions(tree,category).tree} />}
-      {<TreeOrganizations organigramma={organizations} />}
+   
+      {<TreeQuestions domande={createTreeStructureQuestions(tree, category, createObjIdCorrectsAnswer(userAnswers,questions)).tree} />}
+     
       
     </div>
   );
