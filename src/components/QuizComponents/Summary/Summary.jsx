@@ -7,13 +7,14 @@ import {
 } from "../../../utils/calculatePercentage";
 import Button from "../../Button/Button.jsx";
 
-import {createTreeStructure} from "../../../utils/createTreeStructure"
+import {createTreeStructureQuestions} from "../../../utils/TreeStructureQuestions"
 import {
   checkCorrects,
   getNumberAnswerCorrect,
 } from "../../../utils/checkQuestions";
 import PerformanceCategories from "../PerformanceCategories/PerformanceCategories.jsx";
 import TreeQuestions from "../TreeQuestions/TreeQuestions.jsx";
+import TreeOrganizations from "../../TreeOrganizations/TreeOrganizations";
 // import QUESTIONS from '../questions.js';
 
 // const strutturaDomande = {
@@ -123,6 +124,7 @@ export default function Summary({
   onCickTryAgain,
   category,
   tree,
+  organizations,
   review,
   onSetTrackingTest,
   masteryscore,
@@ -161,7 +163,7 @@ export default function Summary({
   const isPassed = percentages.correctPercentage >= masteryscore ? true : false;
 
 
-  console.log("XXXXXXX",createTreeStructure(tree,category))
+  console.log("XXXXXXX",createTreeStructureQuestions(tree,category))
   useEffect(() => {
     onSetTrackingTest({
       score: percentages.correctPercentage,
@@ -268,7 +270,9 @@ export default function Summary({
           })}
         </ol>
       )}
-      {<TreeQuestions domande={createTreeStructure(tree,category).tree} />}
+      {<TreeQuestions domande={createTreeStructureQuestions(tree,category).tree} />}
+      {<TreeOrganizations organigramma={organizations} />}
+      
     </div>
   );
 }

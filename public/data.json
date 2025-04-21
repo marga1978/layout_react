@@ -3,6 +3,37 @@
   "masteryscore": 80,
   "--timer": 15000,
   "--limit": 5,
+  "organizations":
+    {
+      "id": "ceo",
+      "nome": "Amministratore Delegato",
+      "reparto": "Direzione",
+      "sottoposti": [
+        {
+          "id": "manager-vendite",
+          "nome": "Responsabile Vendite",
+          "reparto": "Vendite",
+          "sottoposti": [
+            { "id": "agente1", "nome": "Agente 1", "reparto": "Vendite" },
+            { "id": "agente2", "nome": "Agente 2", "reparto": "Vendite" }
+          ]
+        },
+        {
+          "id": "manager-marketing",
+          "nome": "Responsabile Marketing",
+          "reparto": "Marketing",
+          "sottoposti": [
+            { "id": "specialista-seo", "nome": "Specialista SEO", "reparto": "Marketing" },
+            { "id": "copywriter", "nome": "Copywriter", "reparto": "Marketing",
+              "sottoposti": [
+                { "id": "sottoposto-video", "nome": "sottoposto video", "reparto": "Marketing" },
+                { "id": "sottoposto-grafico", "nome": "ottoposto grafico", "reparto": "Marketing" }
+              ] 
+            }
+          ]
+        }
+      ]
+  },
   "category": {
     "c1": {
       "limit": 2,
