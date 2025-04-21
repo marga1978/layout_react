@@ -125,6 +125,8 @@ export default function Quiz({ data }) {
       <Summary
         userAnswers={userAnswers}
         questions={quiz}
+        category={data.category}
+        tree={data.tree}
         onSetTrackingTest={handleTrackingTest}
         masteryscore={data.masteryscore ? data.masteryscore : 0}
         review={data.review}

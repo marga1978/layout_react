@@ -1,30 +1,117 @@
 {
-  "shuffle":false,
-  "masteryscore":80,
-  "--timer":15000,
-  "--limit":5,
-  "category":{
-    "c1": {"limit":3,"label":"categoria 1"},
-    "c2": {"limit":2,"label":"categoria 2"}
+  "shuffle": false,
+  "masteryscore": 80,
+  "--timer": 15000,
+  "--limit": 5,
+  "category": {
+    "c1": {
+      "limit": 2,
+      "label": "categoria 1",
+      "treeLabel": ["obiettivo1-1", "obiettivo1-2"]
+    },
+    "c2": {
+      "limit": 3,
+      "label": "categoria 2",
+      "treeLabel": ["obiettivo1-3-1", "obiettivo1-3-2", "obiettivo1-3-3"]
+    },
+    "c3": {
+      "limit": 2,
+      "label": "categoria 3",
+      "treeLabel": ["obiettivo2-1", "obiettivo2-2"]
+    },
+    "c4": { "limit": 1, "label": "categoria 4" }
   },
   "review": {
-    "showAnwswer":true,
-    "showCorrect":true,
-    "showReview":true
+    "showAnwswer": true,
+    "showCorrect": true,
+    "showReview": true
+  },
+  "tree": [
+    {
+      "id": "root",
+      "label": "Obiettivo generale",
+      "isCorrect": null,
+      "parentId": null,
+      "child": {
+        "category": "c4"
+      }
+    },
+    {
+      "id": "obiettivo1",
+      "label": "",
+      "isCorrect": null,
+      "parentId": "root",
+      "child": {
+        "category": "c1"
+      }
+    },
+    {
+      "id": "obiettivo1-3",
+      "label": "",
+      "isCorrect": null,
+      "parentId": "obiettivo1",
+      "child": {
+        "category": "c2"
+      }
+    },
+    {
+      "id": "obiettivo2",
+      "label": "",
+      "isCorrect": null,
+      "parentId": "root",
+      "child": {
+        "category": "c3"
+      }
+    }
+  ],
+  "--tree": {
+    "id": "root",
+    "testoBreve": "Obiettivo generale",
+    "isCorretta": null,
+    "opzioni": [
+      {
+        "id": "obiettivo1",
+        "testoBreve": "",
+        "isCorretta": null,
+        "opzioni": [
+          { "id": "obiettivo1-1", "testoBreve": "", "isCorretta": true },
+          { "id": "obiettivo1-2", "testoBreve": "", "isCorretta": false },
+          {
+            "id": "obiettivo1-3",
+            "testoBreve": "",
+            "isCorretta": null,
+            "opzioni": [
+              { "id": "obiettivo1-3-1", "testoBreve": "", "isCorretta": true },
+              { "id": "obiettivo1-3-2", "testoBreve": "", "isCorretta": true },
+              { "id": "obiettivo1-3-3", "testoBreve": "", "isCorretta": true }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "obiettivo2",
+        "testoBreve": "",
+        "opzioni": [
+          { "id": "obiettivo2-1", "testoBreve": "", "isCorretta": false },
+          { "id": "obiettivo2-2", "testoBreve": "", "isCorretta": true }
+        ]
+      },
+      { "id": "obiettivo3", "testoBreve": "?", "isCorretta": true }
+    ]
   },
   "questions": [
     {
       "id": "q1",
-      "shuffle":false,
-      "attempt":2,
-      "cat":"c1",
-      "timer":20000,
-      "type":"multiple",
+      "shuffle": false,
+      "attempt": 2,
+      "cat": "c1",
+      "timer": 20000,
+      "type": "multiple",
       "text": "Which of the following definitions best describes React.js?",
       "answers": [
         {
           "text": "1 A library to build user interfaces with help of declarative code.",
-          "review":"",
+          "review": "",
           "correct": true
         },
         {
@@ -40,23 +127,23 @@
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
+      "feedback": {
+        "correct": "Correct",
+        "wrong": "Wrong",
+        "tryagain": "Try again"
       },
-      "review":{
-        "reviewText":"We recommend that you review topic 1"
+      "review": {
+        "reviewText": "We recommend that you review topic 1"
       }
     },
     {
       "id": "q2",
       "text": "What purpose do React hooks serve?",
-      "shuffle":true,
-      "attempt":2,
-      "cat":"c1",
-      "--timer":3000,
-      "type":"single",
+      "shuffle": true,
+      "attempt": 2,
+      "cat": "c1",
+      "--timer": 3000,
+      "type": "single",
       "answers": [
         {
           "text": "1 Enabling the use of state and other React features in functional components.",
@@ -66,28 +153,31 @@
           "text": "2 Creating responsive layouts in React applications.",
           "correct": false
         },
-        { "text": "3 Handling errors within the application.", "correct": false },
+        {
+          "text": "3 Handling errors within the application.",
+          "correct": false
+        },
         {
           "text": "4 Part of the Redux library for managing global state.",
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
+      "feedback": {
+        "correct": "Correct",
+        "wrong": "Wrong",
+        "tryagain": "Try again"
       },
-      "review":{
-        "reviewText":"We recommend that you review topic 2"
+      "review": {
+        "reviewText": "We recommend that you review topic 2"
       }
     },
     {
       "id": "q3",
-      "shuffle":false,
-      "attempt":2,
-      "--timer":5000,
-      "cat":"c1",
-      "type":"single",
+      "shuffle": false,
+      "attempt": 2,
+      "--timer": 5000,
+      "cat": "c2",
+      "type": "single",
       "text": "Can you identify what JSX is?",
       "answers": [
         {
@@ -107,22 +197,22 @@
           "correct": false
         }
       ],
-      "feedback":{
-        "correct":"Correct",
-        "wrong":"Wrong",
-        "tryagain":"Try again"
+      "feedback": {
+        "correct": "Correct",
+        "wrong": "Wrong",
+        "tryagain": "Try again"
       },
-      "review":{
-        "reviewText":"We recommend that you review topic 3"
+      "review": {
+        "reviewText": "We recommend that you review topic 3"
       }
     },
     {
       "id": "q4",
-      "shuffle":false,
-      "attempt":1,
-      "type":"single",
-      "cat":"c2",
-      "--timer":10000,
+      "shuffle": false,
+      "attempt": 1,
+      "type": "single",
+      "cat": "c2",
+      "--timer": 10000,
       "text": "What is the most common way to create a component in React?",
       "answers": [
         {
@@ -142,18 +232,18 @@
           "correct": false
         }
       ],
-      
-      "review":{
-        "reviewText":"We recommend that you review topic 4"
+
+      "review": {
+        "reviewText": "We recommend that you review topic 4"
       }
     },
     {
       "id": "q5",
-      "shuffle":false,
-      "attempt":1,
-      "type":"single",
-      "cat":"c2",
-      "--timer":7000,
+      "shuffle": false,
+      "attempt": 1,
+      "type": "single",
+      "cat": "c2",
+      "--timer": 7000,
       "text": "What does the term \"React state\" imply?",
       "answers": [
         {
@@ -173,18 +263,18 @@
           "correct": false
         }
       ],
-      
-      "review":{
-        "reviewText":"We recommend that you review topic 5"
+
+      "review": {
+        "reviewText": "We recommend that you review topic 5"
       }
     },
     {
       "id": "q6",
-      "shuffle":false,
-      "attempt":1,
-      "type":"single",
-      "cat":"c2",
-      "--timer":8000,
+      "shuffle": false,
+      "attempt": 1,
+      "type": "single",
+      "cat": "c3",
+      "--timer": 8000,
       "text": "How do you typically render list content in React apps?",
       "answers": [
         {
@@ -204,18 +294,18 @@
           "correct": false
         }
       ],
-      
-      "review":{
-        "reviewText":"We recommend that you review topic 6"
+
+      "review": {
+        "reviewText": "We recommend that you review topic 6"
       }
     },
     {
       "id": "q7",
-      "shuffle":false,
-      "attempt":1,
-      "--timer":9000,
-      "type":"single",
-      "cat":"c2",
+      "shuffle": false,
+      "attempt": 1,
+      "--timer": 9000,
+      "type": "single",
+      "cat": "c3",
       "text": "Which approach can NOT be used to render content conditionally?",
       "answers": [
         { "text": "1 Using a the #if template syntax.", "correct": true },
@@ -223,9 +313,40 @@
         { "text": "3 Using the && operator.", "correct": false },
         { "text": "4 Using an if-else statement.", "correct": false }
       ],
-      
-      "review":{
-        "reviewText":"We recommend that you review topic 7"
+
+      "review": {
+        "reviewText": "We recommend that you review topic 7"
+      }
+    },
+    {
+      "id": "q8",
+      "shuffle": false,
+      "attempt": 1,
+      "type": "single",
+      "cat": "c4",
+      "--timer": 8000,
+      "text": "How do you typically render list content in React apps?",
+      "answers": [
+        {
+          "text": "1 By using the map() method to iterate over an array of data and returning JSX.",
+          "correct": true
+        },
+        {
+          "text": "2 By using the for() loop to iterate over an array of data and returning JSX.",
+          "correct": false
+        },
+        {
+          "text": "3 By using the forEach() method to iterate over an array of data and returning JSX.",
+          "correct": false
+        },
+        {
+          "text": "4 By using the loop() method to iterate over an array of data and returning JSX.",
+          "correct": false
+        }
+      ],
+
+      "review": {
+        "reviewText": "We recommend that you review topic 6"
       }
     }
   ]
