@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styles from "./Summary.module.scss";
 import quizCompleteImg from "../../../assets/quiz-complete.png";
+import BackgroundContainer from "../../BackgroundContainer/BackgroundContainer.jsx"
 import {
   calculatePercentage,
   calculatePercentageCategories,
@@ -15,109 +16,7 @@ import {
 } from "../../../utils/checkQuestions";
 import PerformanceCategories from "../PerformanceCategories/PerformanceCategories.jsx";
 import TreeQuestions from "../TreeQuestions/TreeQuestions.jsx";
-//import TreeOrganizations from "../../TreeOrganizations/TreeOrganizations";
-// import QUESTIONS from '../questions.js';
 
-// const strutturaDomande = {
-//   id: "root",
-//   testoBreve: "Obiettivo generale",
-//   isCorretta: null,
-//   opzioni: [
-//     {
-//       id: "obiettivo1",
-//       testoBreve: "",
-//       isCorretta: null,
-//       opzioni: [
-//         {
-//           id: "obiettivo1-domanda-1",
-//           testoBreve: "",
-//           isCorretta: false
-//         },
-//         {
-//           id: "obiettivo1-domanda-2",
-//           testoBreve: "",
-//           isCorretta: false
-//         },
-//         {
-//           id: "obiettivo1-3",
-//           testoBreve: "",
-//           isCorretta: null,
-//           opzioni: [
-//             {
-//               id: "obiettivo1-3-domanda-1",
-//               testoBreve: "",
-//               isCorretta: false
-//             },
-//             {
-//               id: "obiettivo1-3-domanda-2",
-//               testoBreve: "",
-//               isCorretta: false
-//             },
-//             {
-//               id: "obiettivo1-3-domanda-3",
-//               testoBreve: "",
-//               isCorretta: false
-//             }
-//           ]
-//         }
-//       ]
-//     },
-//     {
-//       id: "obiettivo2",
-//       testoBreve: "",
-//       isCorretta: null,
-//       opzioni: [
-//         {
-//           id: "obiettivo2-domanda-1",
-//           testoBreve: "",
-//           isCorretta: false
-//         },
-//         {
-//           id: "obiettivo2-domanda-2",
-//           testoBreve: "",
-//           isCorretta: false
-//         }
-//       ]
-//     },
-//     {
-//       id: "root-domanda-1",
-//       testoBreve: "Obiettivo generale",
-//       isCorretta: false
-//     }
-//   ]
-// }
-
-// const strutturaDomande = {
-//   id: "root",
-//   testoBreve: "Obiettivo generale",
-//   isCorretta: null,
-//   opzioni: [
-//     {
-//       id: "obiettivo1",
-//       testoBreve: "",
-//       isCorretta: null,
-//       opzioni: [
-//         { id: "obiettivo1-1", testoBreve: "", isCorretta: true },
-//         { id: "obiettivo1-2", testoBreve: "", isCorretta: false },
-//         { id: "obiettivo1-3", testoBreve: "", isCorretta: null,
-//         opzioni: [
-//             {id: "obiettivo1-3-1", nome: "",  isCorretta: true},
-//             {id: "obiettivo1-3-2", nome: "",  isCorretta: true},
-//             {id: "obiettivo1-3-3", nome: "",  isCorretta: true}
-//           ]  },
-//       ],
-//     },
-//     {
-//       id: "obiettivo2",
-//       testoBreve: "",
-//       opzioni: [
-//         { id: "obiettivo2-1", testoBreve: "", isCorretta: false },
-//         { id: "obiettivo2-2", testoBreve: "", isCorretta: true },
-//       ],
-//     },
-//     { id: "obiettivo3", testoBreve: "?", isCorretta: true }, // Nodo foglia (risposta diretta)
-//   ],
-// };
 
 export default function Summary({
   userAnswers,
@@ -152,18 +51,12 @@ export default function Summary({
     return answersUser && answersUser.map((answer) => answer.text).join("<br>");
   }
 
-  // function getNumberAnswerCorrect(index){
-  //   return questions[index].answers.filter(answer => answer.correct === true).length;
-  // }
 
   const objCategories = calculatePercentageCategories(userAnswers, questions,questions);
 
   const percentages = calculatePercentage(userAnswers, questions);
   //const wrongAnswersPerc = calcPerc(userAnswers, "wrong");
   const isPassed = percentages.correctPercentage >= masteryscore ? true : false;
-
-
-  
   
 
   console.log("XXXXX 1 tree",tree)
@@ -182,6 +75,8 @@ export default function Summary({
     onCickTryAgain(false);
   };
   return (
+    <>
+    <BackgroundContainer variant="small">
     <div className={styles.summary}>
       <img src={quizCompleteImg} alt="Trophy icon" />
       {isPassed && <h2>Quiz Completed! You have passed the test.</h2>}
@@ -276,11 +171,12 @@ export default function Summary({
             );
           })}
         </ol>
-      )}
-   
-      {<TreeQuestions domande={createTreeStructureQuestions(tree, category, createObjIdCorrectsAnswer(userAnswers,questions)).tree} />}
-     
-      
+      )}    
     </div>
+    </BackgroundContainer>
+    <BackgroundContainer variant="large"> 
+        {tree && <TreeQuestions domande={createTreeStructureQuestions(tree, category, createObjIdCorrectsAnswer(userAnswers,questions)).tree} />}
+    </BackgroundContainer>
+    </>
   );
 }

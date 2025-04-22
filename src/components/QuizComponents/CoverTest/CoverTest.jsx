@@ -1,6 +1,7 @@
 import styles from './CoverTest.module.scss';
 import quizCompleteImg from '../../../assets/quiz-complete.png';
 import Button from '../../Button/Button.jsx';
+import BackgroundContainer from "../../BackgroundContainer/BackgroundContainer.jsx"
 // import QUESTIONS from '../questions.js';
 
 export default function CoverTest({onSelectStart, limit, masteryscore}) {
@@ -11,7 +12,7 @@ export default function CoverTest({onSelectStart, limit, masteryscore}) {
 
   
   return(
-    <div>
+    <BackgroundContainer variant="small">
        <div className={styles.intro}>
           <p>il test si compone di {limit} domande <br />la soglia di superamento è {masteryscore}%</p>
        </div>
@@ -20,7 +21,7 @@ export default function CoverTest({onSelectStart, limit, masteryscore}) {
           Start
         </Button></p>
        </div>
-    </div>
+    </BackgroundContainer>
   )
 }
 

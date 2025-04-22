@@ -1,0 +1,77 @@
+@use '../../variables' as *;
+
+// .bg-element{
+//    max-width: 70rem;
+//   margin: 2rem auto;
+//   padding: 2rem;
+//   background: linear-gradient($gradient-degree, $bg-gradient-1, $bg-gradient-2);
+//   color: $summary-color;
+//   border-radius: 8px;
+//   box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.6);
+//   animation: slide-in-from-bottom 0.7s ease-out;
+// }
+
+// .bg-element--small {
+//   max-width: 50rem;
+// }
+
+// .bg-element--large {
+//   max-width: 90rem;
+// }
+
+// Stile base
+.bg-element {
+  margin: 2rem auto;
+  padding: 2rem;
+  color: $summary-color;
+  border-radius: 8px;
+  box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.6);
+  animation: slide-in-from-bottom 0.7s ease-out;
+}
+
+// Variante predefinita
+.bg-element--default {
+  max-width: 70rem;
+  background: linear-gradient($gradient-degree, $bg-gradient-1, $bg-gradient-2);
+}
+
+// Variante small
+.bg-element--small {
+  max-width: 50rem;
+  background: linear-gradient($gradient-degree, $bg-gradient-1, $bg-gradient-2);
+}
+
+// Variante large
+.bg-element--large {
+  max-width: 90rem;
+  background: linear-gradient($gradient-degree, $bg-gradient-1, $bg-gradient-2);
+}
+
+// Variante centrata
+.bg-element--centered {
+  max-width: 50rem;
+  margin: auto;
+  padding: 2rem;
+  background: linear-gradient($gradient-degree, $bg-gradient-1, $bg-gradient-2);
+  text-align: center;
+  box-shadow: $shadow-box;
+}
+
+// Variante con sfondo alternativo
+.bg-element--dark {
+  max-width: 50rem;
+  color:$primary-color;
+  text-align: center;
+  background: linear-gradient(90deg, $bg-gradient1, $bg-gradient2);
+}
+
+@keyframes slide-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

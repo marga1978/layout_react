@@ -7,6 +7,7 @@ import Summary from "../Summary/Summary.jsx";
 import CoverTest from "../CoverTest/CoverTest.jsx";
 import QuestionTimer from "../QuestionTimer/QuestionTimer.jsx";
 import { shuffleArray } from "../../../utils/shuffle.js";
+import BackgroundContainer from "../../BackgroundContainer/BackgroundContainer.jsx"
 
 const processQuestions = (data, shuffle = false, limit) => {
   // Estrai l'array di domande e le categorie con i relativi limiti
@@ -136,7 +137,9 @@ export default function Quiz({ data }) {
   }
 
   return (
-    <div className={styles.quiz}>
+    <BackgroundContainer variant="dark">
+     {/* <div className={styles.quiz}> */}
+    <div>
       {quiz && (
         <>
           {timer && !quizIsComplete && (
@@ -152,5 +155,6 @@ export default function Quiz({ data }) {
         </>
       )}
     </div>
+    </BackgroundContainer>
   );
 }
