@@ -1,3 +1,4 @@
+import stylesElement from './Tree.module.scss';
 import React, { useState, useMemo } from 'react';
 
 const Tree = ({
@@ -179,45 +180,45 @@ const Tree = ({
   };
 
   const styles = {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      gap: '16px',
-      padding: '20px',
-      fontFamily: 'Arial, sans-serif'
-    },
-    svgContainer: {
-      backgroundColor: 'white',
-      borderRadius: '8px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      padding: '16px',
-      width: '100%',
-      maxWidth: 'calc(100% - 32px)',
-      overflow: 'auto',
-    },
-    zoomControls: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '10px',
-      backgroundColor: 'white',
-      borderRadius: '8px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      padding: '12px'
-    }
+    // container: {
+    //   display: 'flex',
+    //   flexDirection: 'column',
+    //   alignItems: 'center',
+    //   gap: '16px',
+    //   padding: '20px',
+    //   fontFamily: 'Arial, sans-serif'
+    // },
+    // svgContainer: {
+    //   backgroundColor: 'white',
+    //   borderRadius: '8px',
+    //   boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    //   padding: '16px',
+    //   width: '100%',
+    //   maxWidth: 'calc(100% - 32px)',
+    //   overflow: 'auto',
+    // },
+    // zoomControls: {
+    //   display: 'flex',
+    //   justifyContent: 'center',
+    //   alignItems: 'center',
+    //   gap: '10px',
+    //   backgroundColor: 'white',
+    //   borderRadius: '8px',
+    //   boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    //   padding: '12px'
+    // }
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.zoomControls}>
+    <div className={stylesElement.container}>
+      <div className={stylesElement.zoomControls}>
         <button onClick={handleZoomOut} style={{ padding: '8px 16px', margin: '0 8px', border: 'none', borderRadius: '4px', cursor: 'pointer', color: 'white', backgroundColor: '#2196F3' }} disabled={zoom <= 50}>Zoom -</button>
         <span>{zoom}%</span>
         <button onClick={handleZoomIn} style={{ padding: '8px 16px', margin: '0 8px', border: 'none', borderRadius: '4px', cursor: 'pointer', color: 'white', backgroundColor: '#2196F3' }} disabled={zoom >= 200}>Zoom +</button>
         <button onClick={handleZoomReset} style={{ padding: '8px 16px', margin: '0 8px', border: 'none', borderRadius: '4px', cursor: 'pointer', color: 'white', backgroundColor: '#2196F3' }}>Reset</button>
       </div>
 
-      <div style={styles.svgContainer}>
+      <div className={stylesElement.svgContainer}>
         <svg
           viewBox={`${viewBoxDimensions.x} ${viewBoxDimensions.y} ${viewBoxDimensions.width} ${viewBoxDimensions.height}`}
           style={{
